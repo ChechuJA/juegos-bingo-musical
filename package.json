@@ -1,7 +1,7 @@
 {
-  "name": "eljuegodebrunoyvega",
+  "name": "bingo-musical-gratis",
   "version": "1.0.0",
-  "description": "Una prueba de un juego para niños probando Claude y Github Copilot",
+  "description": "Juegos educativos y bingo musical gratis para todos",
   "main": "game-utils.js",
   "directories": {
     "test": "tests"

@@ -1,6 +1,6 @@
-# El Juego de Bruno y Vega 🎮
+# Bingo Musical Gratis 🎮🎵
 
-Una colección de juegos educativos e interactivos para niños, desarrollada con HTML5, JavaScript y mucho amor.
+Una colección de juegos educativos e interactivos, desarrollada con HTML5, JavaScript y mucho amor.
 
 ## ✨ Características
 
@@ -39,8 +39,8 @@ Nueva sección de juegos educativos sobre el **ODS 13: Acción por el Clima** de
 
 ### 🎯 Juegos Individuales
 - **Arkanoid**: Rompe bloques con tu pelota
-- **Bruno el paracaidista**: Aventura de salto libre  
-- **Vega la bailarina**: Juego de ritmo y movimiento
+- **El Paracaidista**: Aventura de salto libre  
+- **La Bailarina**: Juego de ritmo y movimiento
 - **Memoria animales**: Entrena tu memoria
 - **Serpiente**: El clásico juego de la serpiente
 - **Laberinto de colores**: Encuentra tu camino
@@ -120,9 +120,9 @@ python3 -m http.server 8000
 
 ## 👥 Contribución
 
-Este proyecto fue desarrollado como una prueba de colaboración entre Claude AI y GitHub Copilot, creando una experiencia de juego completa para Bruno y Vega.
+Este proyecto fue desarrollado como una plataforma de juegos educativos accesibles y gratuitos para todos.
 
 ---
 
-**Creado para Bruno y Vega © 2025**
-*Hecho con 💖 por la comunidad de desarrolladores*
+**Bingo Musical Gratis © 2025**
+*Hecho con 💖 para toda la comunidad*
