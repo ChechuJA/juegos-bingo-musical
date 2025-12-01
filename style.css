@@ -1,0 +1,21 @@
+body {
+  background: linear-gradient(135deg, #f0f8ff 0%, #ffe4e1 100%);
+  text-align: center;
+  font-family: 'Comic Sans MS', Arial, sans-serif;
+}
+
+canvas {
+  border: 3px solid #333;
+  background: #fff;
+  margin-top: 30px;
+  box-shadow: 0 0 20px #aaa;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Fondo del juego con texto bonito */
+#gameCanvas {
+  background: linear-gradient(120deg, #e0f7fa 0%, #fce4ec 100%);
+  position: relative;
+}

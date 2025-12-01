@@ -1,0 +1,21 @@
+function registerGame(){
+	// Cazador de Números (refuerza operaciones rápidas)
+	const canvas=document.getElementById('gameCanvas');
+	const ctx=canvas.getContext('2d'); let af=null;
+	let targetOp=null, score=0, fallers=[], tiempo=60, started=false; let lastSpawn=0;
+	let highScore=Number(localStorage.getItem('mathCatcherHigh')||0);
+	let highName=localStorage.getItem('mathCatcherHighName')||'-';
+	const playerName=localStorage.getItem('playerName')||'';
+	canvas.width=800; canvas.height=500;
+	function nuevaOperacion(){ const a=1+Math.floor(Math.random()*9); const b=1+Math.floor(Math.random()*9); const ops=['+','-','x']; const op=ops[Math.floor(Math.random()*ops.length)]; let res; if(op==='+') res=a+b; else if(op==='-') res=a-b; else res=a*b; targetOp={texto:`${a} ${op} ${b}`,res}; }
+	function spawn(){ const n = targetOp.res + (Math.random()<0.5?0: (Math.floor(Math.random()*7)-3)); fallers.push({x:40+Math.random()*(canvas.width-80), y:-30, v:2+Math.random()*2, val:n}); }
+	function update(delta){ if(!started) return; lastSpawn+=delta; if(lastSpawn>700){ spawn(); lastSpawn=0; } for(let f of fallers){ f.y+=f.v; } fallers=fallers.filter(f=>f.y<canvas.height+40); tiempo-=delta/1000; if(tiempo<=0){ started=false; } }
+	function drawHUD(){ if(window.GameUI){ GameUI.gradientBar(ctx, canvas.width, 70, '#4a148c','#6a1b9a'); } else { ctx.fillStyle='#4a148c'; ctx.fillRect(0,0,canvas.width,70);} ctx.fillStyle='#fff'; ctx.font='bold 26px Arial'; ctx.textAlign='center'; ctx.fillText('Cazador de Números', canvas.width/2,40); ctx.font='16px Arial'; ctx.fillStyle='#ffe082'; ctx.fillText('Objetivo: '+(targetOp?targetOp.texto+' = ?':''), canvas.width/2,62); }
+	function draw(){ ctx.clearRect(0,0,canvas.width,canvas.height); if(window.GameUI) GameUI.softBg(ctx,canvas.width,canvas.height); drawHUD(); ctx.save(); ctx.font='18px Arial'; ctx.textAlign='center'; ctx.fillStyle='#333'; ctx.fillText('Tiempo: '+tiempo.toFixed(1)+'  Puntos: '+score, canvas.width/2,100); ctx.fillStyle='#555'; ctx.fillText('Récord: '+highScore+' ('+highName+')', canvas.width/2,125); if(!started){ ctx.font='18px Arial'; if(tiempo<=0){ ctx.fillStyle='#2e7d32'; ctx.fillText('Fin. Pulsa cualquier tecla para reiniciar.', canvas.width/2,160);} else { ctx.fillStyle='#0d47a1'; ctx.fillText('Pulsa cualquier tecla para comenzar', canvas.width/2,160);} } ctx.restore(); for(let f of fallers){ ctx.save(); ctx.beginPath(); ctx.arc(f.x,f.y,24,0,Math.PI*2); const correcto=(f.val===targetOp.res); const grad=ctx.createRadialGradient(f.x-6,f.y-6,6,f.x,f.y,26); if(correcto){ grad.addColorStop(0,'#a5d6a7'); grad.addColorStop(1,'#388e3c'); } else { grad.addColorStop(0,'#ffe0b2'); grad.addColorStop(1,'#fb8c00'); } ctx.fillStyle=grad; ctx.fill(); ctx.strokeStyle='rgba(0,0,0,0.4)'; ctx.stroke(); ctx.fillStyle='#000'; ctx.font='16px Arial'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(f.val, f.x, f.y); ctx.restore(); } }
+	function loop(t){ if(!loop.prev) loop.prev=t; const delta=t-loop.prev; loop.prev=t; update(delta); draw(); af=requestAnimationFrame(loop); }
+	function key(){ if(!started){ if(tiempo<=0 && score>highScore){ highScore=score; highName=playerName||'-'; localStorage.setItem('mathCatcherHigh', String(highScore)); localStorage.setItem('mathCatcherHighName', highName); } started=true; tiempo=60; score=0; fallers=[]; nuevaOperacion(); return; } }
+	function click(e){ if(!started) return; const rect=canvas.getBoundingClientRect(); const mx=e.clientX-rect.left, my=e.clientY-rect.top; for(let i=fallers.length-1;i>=0;i--){ const f=fallers[i]; const dx=mx-f.x, dy=my-f.y; if(dx*dx+dy*dy<24*24){ if(f.val===targetOp.res){ score+=50; if(score>highScore){ highScore=score; highName=playerName||'-'; localStorage.setItem('mathCatcherHigh', String(highScore)); localStorage.setItem('mathCatcherHighName', highName); } nuevaOperacion(); fallers=[]; } else score=Math.max(0,score-20); fallers.splice(i,1); break; } } }
+	window.addEventListener('keydown',key); canvas.addEventListener('click',click); nuevaOperacion(); requestAnimationFrame(loop);
+	return function cleanup(){ if(af) cancelAnimationFrame(af); window.removeEventListener('keydown',key); canvas.removeEventListener('click',click); };
+}
+window.registerGame=registerGame;

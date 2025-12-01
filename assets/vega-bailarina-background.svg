@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="60%" stop-color="#2a285c"/>
+      <stop offset="100%" stop-color="#3b2f63"/>
+    </linearGradient>
+    <linearGradient id="stageWood" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8d6e63"/>
+      <stop offset="100%" stop-color="#6d4c41"/>
+    </linearGradient>
+  </defs>
+  <!-- Back wall -->
+  <rect x="0" y="0" width="800" height="500" fill="url(#bgGrad)"/>
+  <!-- Curtains -->
+  <g>
+    <rect x="0" y="0" width="120" height="500" fill="#b71c1c"/>
+    <rect x="680" y="0" width="120" height="500" fill="#b71c1c"/>
+    <path d="M0,0 C200,80 600,80 800,0 L800,100 L0,100 Z" fill="#c62828"/>
+    <path d="M0,0 C200,70 600,70 800,0" fill="none" stroke="#8e0000" stroke-width="4"/>
+  </g>
+  <!-- Stage floor -->
+  <rect x="0" y="360" width="800" height="140" fill="url(#stageWood)"/>
+  <!-- Footlights -->
+  <g fill="#ffd54f" opacity="0.7">
+    <circle cx="80" cy="360" r="6"/>
+    <circle cx="200" cy="360" r="6"/>
+    <circle cx="320" cy="360" r="6"/>
+    <circle cx="440" cy="360" r="6"/>
+    <circle cx="560" cy="360" r="6"/>
+    <circle cx="680" cy="360" r="6"/>
+  </g>
+  <!-- Spotlights beams -->
+  <g opacity="0.18">
+    <polygon points="120,0 200,0 320,360 240,360" fill="#fffde7"/>
+    <polygon points="620,0 700,0 560,360 480,360" fill="#fffde7"/>
+  </g>
+  <!-- Props silhouettes (ballet barre and star) -->
+  <g opacity="0.35">
+    <rect x="560" y="280" width="160" height="6" fill="#d7ccc8"/>
+    <rect x="560" y="286" width="6" height="60" fill="#bcaaa4"/>
+    <rect x="714" y="286" width="6" height="60" fill="#bcaaa4"/>
+    <polygon points="120,260 128,280 150,282 134,296 138,318 120,308 102,318 106,296 90,282 112,280" fill="#fff59d"/>
+  </g>
+</svg>

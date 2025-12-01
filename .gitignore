@@ -1,0 +1,22 @@
+# Ignorar entornos, cachés y archivos de configuración
+.venv/
+env/
+.env/
+env/**
+ENV/
+ENV/**
+/.env
+/.env/**
+__pycache__/
+.cache/
+.trunk/
+*.log
+*.tmp
+.DS_Store
+node_modules/
+# Ignorar archivos de sistema
+Thumbs.db
+# Ignorar archivos de documentación generados
+site/
+dist/
+build/

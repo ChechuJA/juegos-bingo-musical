@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+  <defs>
+    <linearGradient id="suit" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#64b5f6"/>
+      <stop offset="100%" stop-color="#1976d2"/>
+    </linearGradient>
+    <linearGradient id="canopy" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffd54f"/>
+      <stop offset="100%" stop-color="#ffb300"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Parachute canopy -->
+    <path d="M60,80 Q150,10 240,80 A5,5 0 0 1 60,80 Z" fill="url(#canopy)" stroke="#333" stroke-width="4"/>
+    <!-- Lines -->
+    <g stroke="#333" stroke-width="3">
+      <line x1="90" y1="85" x2="120" y2="140"/>
+      <line x1="210" y1="85" x2="180" y2="140"/>
+    </g>
+    <!-- Shadow -->
+    <ellipse cx="150" cy="245" rx="28" ry="10" fill="rgba(0,0,0,0.2)" stroke="none"/>
+    <!-- Character -->
+    <!-- Head -->
+    <circle cx="150" cy="160" r="20" fill="#ffe0b2" stroke="#333" stroke-width="2"/>
+    <!-- Helmet (top half) -->
+    <path d="M130,160 A20,20 0 0 1 170,160 L170,155 A25,25 0 0 0 130,155 Z" fill="#1976d2" stroke="#333" stroke-width="2"/>
+    <!-- Goggles -->
+    <rect x="136" y="162" width="28" height="10" rx="5" fill="#90caf9" stroke="#333" stroke-width="2"/>
+    <!-- Body -->
+    <rect x="138" y="182" width="24" height="36" rx="4" fill="url(#suit)" stroke="#333" stroke-width="2"/>
+    <!-- Arms -->
+    <path d="M138,192 Q128,200 122,208" stroke="#333" stroke-width="3"/>
+    <path d="M162,192 Q172,200 178,208" stroke="#333" stroke-width="3"/>
+    <!-- Legs -->
+    <path d="M146,218 L144,236" stroke="#333" stroke-width="3"/>
+    <path d="M154,218 L156,236" stroke="#333" stroke-width="3"/>
+    <!-- Smoke puff placeholder (optional) -->
+    <!-- <circle cx="150" cy="255" r="12" fill="rgba(200,200,200,0.7)" stroke="none"/> -->
+  </g>
+</svg>

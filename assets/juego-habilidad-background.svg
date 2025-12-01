@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <!-- Futuristic neon circuit background -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b0f1a"/>
+      <stop offset="100%" stop-color="#121a2b"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="800" height="500" fill="url(#bg)"/>
+  <!-- grid -->
+  <g stroke="#14213d" stroke-width="1" opacity="0.6">
+    <path d="M0,420 L800,420"/>
+    <path d="M0,380 L800,380"/>
+    <path d="M0,340 L800,340"/>
+    <path d="M0,300 L800,300"/>
+    <path d="M0,260 L800,260"/>
+  </g>
+  <!-- neon lanes -->
+  <g stroke-width="4" fill="none">
+    <path d="M0,440 C200,420 600,480 800,460" stroke="#00e5ff" opacity="0.7"/>
+    <path d="M0,360 C160,340 640,420 800,400" stroke="#ff4081" opacity="0.7"/>
+    <path d="M0,320 C220,300 620,360 800,350" stroke="#69f0ae" opacity="0.7"/>
+  </g>
+  <!-- glow dots -->
+  <g>
+    <circle cx="120" cy="420" r="3" fill="#00e5ff"/>
+    <circle cx="260" cy="380" r="3" fill="#ff4081"/>
+    <circle cx="540" cy="360" r="3" fill="#69f0ae"/>
+    <circle cx="700" cy="440" r="3" fill="#00e5ff"/>
+  </g>
+</svg>

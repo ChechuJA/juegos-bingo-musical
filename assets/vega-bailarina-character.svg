@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="320" viewBox="0 0 60 80">
+  <!-- Vega la bailarina: niña castaña con tutú rosa. Fondo transparente -->
+  <defs>
+    <linearGradient id="dress" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8bbd0"/>
+      <stop offset="100%" stop-color="#ec407a"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Sombra -->
+    <ellipse cx="30" cy="74" rx="10" ry="3.5" fill="rgba(0,0,0,0.2)" stroke="none"/>
+    <!-- Cabeza -->
+    <circle cx="30" cy="20" r="9" fill="#ffddb3" stroke="#333" stroke-width="1"/>
+    <!-- Pelo castaño -->
+    <path d="M21,20 Q30,8 39,20 L39,22 Q30,17 21,22 Z" fill="#8d6e63" stroke="#5d4037" stroke-width="0.8"/>
+    <!-- Moño -->
+    <circle cx="36" cy="14" r="3" fill="#8d6e63" stroke="#5d4037" stroke-width="0.8"/>
+    <!-- Ojos y sonrisa -->
+    <circle cx="27" cy="20" r="1.2" fill="#333"/>
+    <circle cx="33" cy="20" r="1.2" fill="#333"/>
+    <path d="M26,24 Q30,26 34,24" stroke="#333" stroke-width="0.8" fill="none"/>
+    <!-- Cuerpo -->
+    <rect x="24" y="30" width="12" height="10" rx="2" fill="url(#dress)" stroke="#ad1457" stroke-width="0.8"/>
+    <!-- Falda tutú -->
+    <path d="M20,42 Q30,34 40,42 Q30,46 20,42 Z" fill="#f8bbd0" stroke="#ec407a" stroke-width="0.8"/>
+    <!-- Piernas -->
+    <path d="M27,42 L27,54" stroke="#333" stroke-width="1.6"/>
+    <path d="M33,42 L33,54" stroke="#333" stroke-width="1.6"/>
+    <!-- Zapatillas -->
+    <ellipse cx="27" cy="56.5" rx="3" ry="1.6" fill="#ec407a"/>
+    <ellipse cx="33" cy="56.5" rx="3" ry="1.6" fill="#ec407a"/>
+    <!-- Brazos en pose de ballet -->
+    <path d="M24,32 Q18,36 20,40" stroke="#333" stroke-width="1.6"/>
+    <path d="M36,32 Q42,36 40,40" stroke="#333" stroke-width="1.6"/>
+  </g>
+</svg>

@@ -1,0 +1,161 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Nature/Forest background for Snake game -->
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#98FB98;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#90EE90;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="grassGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#32CD32;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#228B22;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Tree trunk -->
+    <g id="tree">
+      <rect x="-5" y="-60" width="10" height="60" fill="#8B4513" rx="2"/>
+      <ellipse cx="0" cy="-70" rx="25" ry="20" fill="#228B22"/>
+      <ellipse cx="-15" cy="-65" rx="20" ry="15" fill="#32CD32"/>
+      <ellipse cx="15" cy="-65" rx="20" ry="15" fill="#32CD32"/>
+      <ellipse cx="0" cy="-85" rx="18" ry="13" fill="#90EE90"/>
+    </g>
+    
+    <!-- Bush -->
+    <g id="bush">
+      <ellipse cx="0" cy="0" rx="20" ry="12" fill="#228B22"/>
+      <ellipse cx="-12" cy="-5" rx="15" ry="10" fill="#32CD32"/>
+      <ellipse cx="12" cy="-5" rx="15" ry="10" fill="#32CD32"/>
+      <ellipse cx="0" cy="-10" rx="12" ry="8" fill="#90EE90"/>
+    </g>
+    
+    <!-- Flower -->
+    <g id="flower">
+      <rect x="-1" y="0" width="2" height="8" fill="#228B22"/>
+      <circle cx="0" cy="-3" r="3" fill="#FF69B4"/>
+      <circle cx="-3" cy="0" r="3" fill="#FF69B4"/>
+      <circle cx="3" cy="0" r="3" fill="#FF69B4"/>
+      <circle cx="0" cy="3" r="3" fill="#FF69B4"/>
+      <circle cx="0" cy="0" r="2" fill="#FFD700"/>
+    </g>
+    
+    <!-- Mushroom -->
+    <g id="mushroom">
+      <rect x="-2" y="-3" width="4" height="8" fill="#F5F5DC"/>
+      <ellipse cx="0" cy="-5" rx="6" ry="4" fill="#DC143C"/>
+      <circle cx="-3" cy="-6" r="1" fill="#FFFFFF"/>
+      <circle cx="2" cy="-4" r="1" fill="#FFFFFF"/>
+    </g>
+    
+    <!-- Cloud -->
+    <g id="cloud">
+      <ellipse cx="0" cy="0" rx="20" ry="12" fill="#FFFFFF" opacity="0.8"/>
+      <ellipse cx="-15" cy="0" rx="15" ry="10" fill="#FFFFFF" opacity="0.8"/>
+      <ellipse cx="15" cy="0" rx="15" ry="10" fill="#FFFFFF" opacity="0.8"/>
+      <ellipse cx="-8" cy="-6" rx="12" ry="8" fill="#FFFFFF" opacity="0.8"/>
+      <ellipse cx="8" cy="-6" rx="12" ry="8" fill="#FFFFFF" opacity="0.8"/>
+    </g>
+    
+    <!-- Butterfly -->
+    <g id="butterfly">
+      <ellipse cx="-3" cy="-2" rx="4" ry="2" fill="#FF6347" transform="rotate(-20)"/>
+      <ellipse cx="3" cy="-2" rx="4" ry="2" fill="#FF6347" transform="rotate(20)"/>
+      <ellipse cx="-3" cy="2" rx="3" ry="1.5" fill="#FFA500" transform="rotate(-20)"/>
+      <ellipse cx="3" cy="2" rx="3" ry="1.5" fill="#FFA500" transform="rotate(20)"/>
+      <line x1="0" y1="-3" x2="0" y2="3" stroke="#4B0082" stroke-width="1"/>
+    </g>
+    
+    <!-- Grass blade -->
+    <g id="grassBlade">
+      <path d="M 0 0 Q -1 -5 0 -10 Q 1 -5 0 0" fill="#32CD32"/>
+    </g>
+  </defs>
+  
+  <!-- Sky background -->
+  <rect width="800" height="400" fill="url(#skyGradient)"/>
+  
+  <!-- Ground -->
+  <rect x="0" y="400" width="800" height="200" fill="url(#grassGradient)"/>
+  
+  <!-- Clouds -->
+  <use href="#cloud" transform="translate(120, 80)"/>
+  <use href="#cloud" transform="translate(350, 60)"/>
+  <use href="#cloud" transform="translate(600, 90)"/>
+  <use href="#cloud" transform="translate(750, 70)"/>
+  
+  <!-- Sun -->
+  <circle cx="700" cy="80" r="25" fill="#FFD700"/>
+  <g stroke="#FFD700" stroke-width="2" stroke-linecap="round">
+    <line x1="675" y1="80" x2="660" y2="80"/>
+    <line x1="725" y1="80" x2="740" y2="80"/>
+    <line x1="700" y1="55" x2="700" y2="40"/>
+    <line x1="700" y1="105" x2="700" y2="120"/>
+    <line x1="682" y1="62" x2="672" y2="52"/>
+    <line x1="718" y1="98" x2="728" y2="108"/>
+    <line x1="718" y1="62" x2="728" y2="52"/>
+    <line x1="682" y1="98" x2="672" y2="108"/>
+  </g>
+  
+  <!-- Trees -->
+  <use href="#tree" transform="translate(80, 400)"/>
+  <use href="#tree" transform="translate(200, 400)"/>
+  <use href="#tree" transform="translate(350, 400)"/>
+  <use href="#tree" transform="translate(500, 400)"/>
+  <use href="#tree" transform="translate(650, 400)"/>
+  <use href="#tree" transform="translate(750, 400)"/>
+  
+  <!-- Bushes -->
+  <use href="#bush" transform="translate(130, 420)"/>
+  <use href="#bush" transform="translate(280, 425)"/>
+  <use href="#bush" transform="translate(420, 420)"/>
+  <use href="#bush" transform="translate(580, 425)"/>
+  
+  <!-- Flowers scattered around -->
+  <use href="#flower" transform="translate(60, 450)"/>
+  <use href="#flower" transform="translate(150, 480)"/>
+  <use href="#flower" transform="translate(250, 470)"/>
+  <use href="#flower" transform="translate(380, 460)"/>
+  <use href="#flower" transform="translate(520, 475)"/>
+  <use href="#flower" transform="translate(680, 465)"/>
+  <use href="#flower" transform="translate(720, 485)"/>
+  
+  <!-- Mushrooms -->
+  <use href="#mushroom" transform="translate(110, 440)"/>
+  <use href="#mushroom" transform="translate(320, 445)"/>
+  <use href="#mushroom" transform="translate(480, 450)"/>
+  <use href="#mushroom" transform="translate(620, 440)"/>
+  
+  <!-- Butterflies -->
+  <use href="#butterfly" transform="translate(180, 200)"/>
+  <use href="#butterfly" transform="translate(450, 180)"/>
+  <use href="#butterfly" transform="translate(650, 220)"/>
+  
+  <!-- Grass blades for texture -->
+  <g opacity="0.6">
+    <use href="#grassBlade" transform="translate(90, 500)"/>
+    <use href="#grassBlade" transform="translate(140, 510)"/>
+    <use href="#grassBlade" transform="translate(190, 505)"/>
+    <use href="#grassBlade" transform="translate(240, 515)"/>
+    <use href="#grassBlade" transform="translate(290, 508)"/>
+    <use href="#grassBlade" transform="translate(340, 512)"/>
+    <use href="#grassBlade" transform="translate(390, 506)"/>
+    <use href="#grassBlade" transform="translate(440, 514)"/>
+    <use href="#grassBlade" transform="translate(490, 509)"/>
+    <use href="#grassBlade" transform="translate(540, 511)"/>
+    <use href="#grassBlade" transform="translate(590, 507)"/>
+    <use href="#grassBlade" transform="translate(640, 513)"/>
+    <use href="#grassBlade" transform="translate(690, 510)"/>
+    <use href="#grassBlade" transform="translate(740, 505)"/>
+  </g>
+  
+  <!-- Mountain silhouettes in distance -->
+  <polygon points="0,350 100,250 200,300 300,200 400,280 500,220 600,260 700,180 800,240 800,400 0,400" fill="#696969" opacity="0.3"/>
+  
+  <!-- Game area overlay (subtle grid pattern for snake game) -->
+  <defs>
+    <pattern id="gameGrid" patternUnits="userSpaceOnUse" width="20" height="20">
+      <rect width="20" height="20" fill="none" stroke="#90EE90" stroke-width="0.2" opacity="0.3"/>
+    </pattern>
+  </defs>
+  <rect x="50" y="50" width="700" height="500" fill="url(#gameGrid)" opacity="0.5"/>
+</svg>

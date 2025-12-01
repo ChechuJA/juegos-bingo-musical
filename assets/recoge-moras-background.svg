@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <!-- Morasverdes (Salamanca) - escena estilizada: Sierra al fondo, pueblo con tejados rojos, torre de iglesia y pradera con encinas -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b3e5fc"/>
+      <stop offset="100%" stop-color="#e1f5fe"/>
+    </linearGradient>
+    <linearGradient id="meadow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b9f6ca"/>
+      <stop offset="100%" stop-color="#81c784"/>
+    </linearGradient>
+  </defs>
+  <!-- Cielo -->
+  <rect x="0" y="0" width="800" height="500" fill="url(#sky)"/>
+  <!-- Sierras (Sierra de Francia, estilizada) -->
+  <g fill="#90a4ae" opacity="0.7">
+    <path d="M0,200 C120,180 180,210 280,200 C380,190 460,220 560,210 C640,202 720,215 800,205 L800,260 L0,260 Z"/>
+    <path d="M0,240 C160,220 240,250 380,240 C520,230 640,260 800,245 L800,280 L0,280 Z" opacity="0.5"/>
+  </g>
+  <!-- Pradera -->
+  <rect x="0" y="260" width="800" height="240" fill="url(#meadow)"/>
+  <!-- Pueblo: casas de piedra con tejado rojo -->
+  <g>
+    <!-- grupo de casas -->
+    <g transform="translate(160,260)">
+      <rect x="0" y="40" width="80" height="50" fill="#cfd8dc" stroke="#90a4ae"/>
+      <polygon points="-6,40 40,10 86,40" fill="#c62828" stroke="#8e0000"/>
+      <rect x="20" y="64" width="18" height="26" fill="#795548"/>
+      <rect x="52" y="54" width="16" height="14" fill="#90caf9"/>
+    </g>
+    <g transform="translate(250,265)">
+      <rect x="0" y="40" width="70" height="46" fill="#cfd8dc" stroke="#90a4ae"/>
+      <polygon points="-6,40 35,14 76,40" fill="#c62828" stroke="#8e0000"/>
+      <rect x="12" y="58" width="16" height="12" fill="#90caf9"/>
+      <rect x="36" y="58" width="16" height="12" fill="#90caf9"/>
+    </g>
+    <!-- Torre de iglesia (espadaña) -->
+    <g transform="translate(340,246)">
+      <rect x="0" y="38" width="38" height="70" fill="#b0bec5" stroke="#78909c"/>
+      <polygon points="-4,38 19,16 42,38" fill="#d84315" stroke="#8d310d"/>
+      <circle cx="19" cy="62" r="6" fill="#263238"/>
+    </g>
+    <!-- grupo pequeño -->
+    <g transform="translate(405,274)">
+      <rect x="0" y="30" width="54" height="40" fill="#cfd8dc" stroke="#90a4ae"/>
+      <polygon points="-6,30 27,10 60,30" fill="#c62828" stroke="#8e0000"/>
+    </g>
+  </g>
+  <!-- Encinas (robles) -->
+  <g>
+    <g transform="translate(96,330)">
+      <rect x="-6" y="44" width="12" height="30" fill="#6d4c41"/>
+      <circle cx="0" cy="36" r="26" fill="#2e7d32"/>
+      <circle cx="-16" cy="44" r="18" fill="#2e7d32"/>
+      <circle cx="16" cy="44" r="18" fill="#2e7d32"/>
+    </g>
+    <g transform="translate(640,340)">
+      <rect x="-5" y="40" width="10" height="30" fill="#6d4c41"/>
+      <circle cx="0" cy="34" r="22" fill="#2e7d32"/>
+      <circle cx="-14" cy="42" r="14" fill="#2e7d32"/>
+      <circle cx="14" cy="42" r="14" fill="#2e7d32"/>
+    </g>
+  </g>
+  <!-- Flores dispersas -->
+  <g>
+    <circle cx="260" cy="400" r="3" fill="#ffeb3b"/>
+    <circle cx="300" cy="384" r="3" fill="#ff8a80"/>
+    <circle cx="340" cy="420" r="3" fill="#ffd740"/>
+    <circle cx="420" cy="396" r="3" fill="#ff8a80"/>
+    <circle cx="480" cy="410" r="3" fill="#69f0ae"/>
+  </g>
+</svg>

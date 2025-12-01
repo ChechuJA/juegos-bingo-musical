@@ -1,0 +1,138 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Deep space background -->
+  <defs>
+    <radialGradient id="spaceGradient" cx="50%" cy="30%" r="80%">
+      <stop offset="0%" style="stop-color:#1a0033;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#2d1b69;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a001a;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Nebula gradients -->
+    <radialGradient id="nebula1" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:0.3" />
+      <stop offset="50%" style="stop-color:#c44569;stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:#c44569;stop-opacity:0" />
+    </radialGradient>
+    
+    <radialGradient id="nebula2" cx="50%" cy="50%" r="80%">
+      <stop offset="0%" style="stop-color:#4834d4;stop-opacity:0.25" />
+      <stop offset="50%" style="stop-color:#6c5ce7;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#a29bfe;stop-opacity:0" />
+    </radialGradient>
+    
+    <!-- Planet -->
+    <radialGradient id="planetGradient" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#ff7675;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#d63031;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#74b9ff;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Star twinkle -->
+    <g id="star">
+      <circle r="1" fill="#ffffff" opacity="0.9"/>
+      <circle r="0.5" fill="#ffff00" opacity="0.8"/>
+    </g>
+    
+    <g id="bigStar">
+      <polygon points="0,-6 1.5,-1.5 6,0 1.5,1.5 0,6 -1.5,1.5 -6,0 -1.5,-1.5" fill="#ffffff" opacity="0.8"/>
+      <polygon points="0,-3 0.8,-0.8 3,0 0.8,0.8 0,3 -0.8,0.8 -3,0 -0.8,-0.8" fill="#ffff00" opacity="0.9"/>
+    </g>
+    
+    <!-- Asteroid -->
+    <g id="asteroid">
+      <ellipse cx="0" cy="0" rx="8" ry="6" fill="#8d6e63" opacity="0.6" transform="rotate(45)"/>
+      <ellipse cx="2" cy="-1" rx="3" ry="2" fill="#5d4037" opacity="0.4"/>
+      <circle cx="-2" cy="1" r="1.5" fill="#3e2723" opacity="0.5"/>
+    </g>
+    
+    <!-- Galaxy spiral -->
+    <g id="galaxy">
+      <ellipse cx="0" cy="0" rx="25" ry="15" fill="#6c5ce7" opacity="0.3" transform="rotate(20)"/>
+      <ellipse cx="0" cy="0" rx="18" ry="10" fill="#a29bfe" opacity="0.4" transform="rotate(20)"/>
+      <ellipse cx="0" cy="0" rx="12" ry="6" fill="#fd79a8" opacity="0.5" transform="rotate(20)"/>
+      <ellipse cx="0" cy="0" rx="6" ry="3" fill="#ffffff" opacity="0.6" transform="rotate(20)"/>
+    </g>
+  </defs>
+  
+  <!-- Space background -->
+  <rect width="800" height="600" fill="url(#spaceGradient)"/>
+  
+  <!-- Nebulae -->
+  <ellipse cx="150" cy="120" rx="120" ry="80" fill="url(#nebula1)" transform="rotate(-30 150 120)"/>
+  <ellipse cx="650" cy="450" rx="100" ry="70" fill="url(#nebula2)" transform="rotate(45 650 450)"/>
+  <ellipse cx="400" cy="300" rx="80" ry="50" fill="url(#nebula1)" transform="rotate(10 400 300)" opacity="0.3"/>
+  
+  <!-- Stars scattered throughout -->
+  <use href="#star" transform="translate(80, 80)"/>
+  <use href="#star" transform="translate(150, 45)"/>
+  <use href="#star" transform="translate(220, 120)"/>
+  <use href="#star" transform="translate(320, 80)"/>
+  <use href="#star" transform="translate(450, 50)"/>
+  <use href="#star" transform="translate(520, 130)"/>
+  <use href="#star" transform="translate(620, 90)"/>
+  <use href="#star" transform="translate(720, 110)"/>
+  <use href="#star" transform="translate(750, 160)"/>
+  <use href="#star" transform="translate(680, 200)"/>
+  <use href="#star" transform="translate(580, 250)"/>
+  <use href="#star" transform="translate(480, 180)"/>
+  <use href="#star" transform="translate(380, 220)"/>
+  <use href="#star" transform="translate(280, 190)"/>
+  <use href="#star" transform="translate(180, 240)"/>
+  <use href="#star" transform="translate(120, 280)"/>
+  <use href="#star" transform="translate(80, 320)"/>
+  <use href="#star" transform="translate(60, 400)"/>
+  <use href="#star" transform="translate(140, 450)"/>
+  <use href="#star" transform="translate(240, 480)"/>
+  <use href="#star" transform="translate(340, 520)"/>
+  <use href="#star" transform="translate(440, 540)"/>
+  <use href="#star" transform="translate(540, 500)"/>
+  <use href="#star" transform="translate(640, 520)"/>
+  <use href="#star" transform="translate(720, 480)"/>
+  <use href="#star" transform="translate(760, 420)"/>
+  <use href="#star" transform="translate(700, 380)"/>
+  <use href="#star" transform="translate(600, 360)"/>
+  <use href="#star" transform="translate(500, 380)"/>
+  <use href="#star" transform="translate(400, 420)"/>
+  <use href="#star" transform="translate(300, 440)"/>
+  <use href="#star" transform="translate(200, 380)"/>
+  <use href="#star" transform="translate(100, 360)"/>
+  <use href="#star" transform="translate(50, 500)"/>
+  <use href="#star" transform="translate(90, 550)"/>
+  
+  <!-- Bright stars -->
+  <use href="#bigStar" transform="translate(200, 100)"/>
+  <use href="#bigStar" transform="translate(600, 150)"/>
+  <use href="#bigStar" transform="translate(350, 400)"/>
+  <use href="#bigStar" transform="translate(700, 300)"/>
+  <use href="#bigStar" transform="translate(100, 200)"/>
+  
+  <!-- Planet in corner -->
+  <circle cx="700" cy="500" r="40" fill="url(#planetGradient)"/>
+  <!-- Planet rings -->
+  <ellipse cx="700" cy="500" rx="55" ry="8" fill="none" stroke="#74b9ff" stroke-width="2" opacity="0.6"/>
+  <ellipse cx="700" cy="500" rx="48" ry="6" fill="none" stroke="#0984e3" stroke-width="1" opacity="0.4"/>
+  
+  <!-- Distant galaxy -->
+  <use href="#galaxy" transform="translate(100, 500)"/>
+  
+  <!-- Floating asteroids -->
+  <use href="#asteroid" transform="translate(50, 150) rotate(30)"/>
+  <use href="#asteroid" transform="translate(750, 80) rotate(-45)"/>
+  <use href="#asteroid" transform="translate(450, 550) rotate(60)"/>
+  
+  <!-- Shooting star trail -->
+  <path d="M 20 30 L 80 80 L 75 85 L 15 35 Z" fill="url(#nebula2)" opacity="0.6"/>
+  <line x1="20" y1="30" x2="80" y2="80" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+  
+  <!-- Space dust/particles -->
+  <g opacity="0.4">
+    <circle cx="300" cy="150" r="0.5" fill="#ffffff"/>
+    <circle cx="450" cy="100" r="0.5" fill="#ffffff"/>
+    <circle cx="500" cy="200" r="0.5" fill="#ffffff"/>
+    <circle cx="650" cy="180" r="0.5" fill="#ffffff"/>
+    <circle cx="350" cy="320" r="0.5" fill="#ffffff"/>
+    <circle cx="150" cy="350" r="0.5" fill="#ffffff"/>
+    <circle cx="550" cy="420" r="0.5" fill="#ffffff"/>
+    <circle cx="250" cy="550" r="0.5" fill="#ffffff"/>
+  </g>
+</svg>

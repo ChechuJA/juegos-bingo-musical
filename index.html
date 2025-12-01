@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>El juego de Bruno y Vega</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin:0;
+      background: linear-gradient(135deg,#f3f8ff,#ffecec);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    header { width:100%; background:#0d3d91; color:#fff; text-align:center; padding:14px 8px; font-weight:bold; box-shadow:0 2px 6px rgba(0,0,0,.25);}
+    #gameArea { display:none; margin:20px 0; }
+    #gameCanvas {
+      width:100%; max-width:800px; height:auto;
+      background:#fff; border:2px solid #333; box-shadow:0 4px 14px rgba(0,0,0,.25);
+      touch-action:none;
+    }
+    #controls { text-align:center; margin-top:8px; display:flex; gap:10px; justify-content:center; }
+    #controls button, #backBtn button {
+      background:#1976d2; color:#fff; border:none; padding:8px 14px;
+      border-radius:6px; cursor:pointer; font-size:14px; font-weight:600;
+    }
+    #controls button:hover,#backBtn button:hover { background:#0d47a1; }
+    #menu { max-width:1180px; padding:14px 18px 40px; }
+    #menu h2 { text-align:center; margin:28px 0 10px; }
+    #menu p.box {
+      max-width:780px; margin:0 auto 18px; font-size:14px; line-height:1.35;
+      padding:10px 14px; border:2px dashed #90caf9; border-radius:12px;
+      background:rgba(255,255,255,.75);
+    }
+    #menu p.tip {
+      max-width:780px; margin:0 auto 24px; font-size:13px; line-height:1.3;
+      background:rgba(255,255,255,.55); padding:8px 12px; border-radius:10px;
+    }
+    #gameButtons { display:flex; flex-wrap:wrap; gap:8px 10px; justify-content:center; }
+    #gameButtons button {
+      border:none; padding:6px 10px; border-radius:6px; font-size:12px;
+      cursor:pointer; font-weight:600; color:#fff; letter-spacing:.2px;
+      box-shadow:0 2px 5px rgba(0,0,0,.25);
+    }
+    #gameButtons button:hover { transform:translateY(-2px); box-shadow:0 4px 8px rgba(0,0,0,.35); }
+    #backBtn { display:none; text-align:center; margin:10px 0 4px; }
+    #globalScoresOverlay {
+      display:none; position:fixed; inset:0; background:rgba(0,0,20,.82);
+      z-index:1200; align-items:center; justify-content:center;
+    }
+    footer { margin:30px 0 16px; font-size:12px; color:#333; opacity:.7; }
+    /* Overlay nombre */
+    #playerOverlay {
+      position:fixed; inset:0; display:none; align-items:center; justify-content:center;
+      background:rgba(0,0,0,.65); z-index:999;
+    }
+  </style>
+</head>
+<body>
+
+  <header>El Juego de Bruno y Vega</header>
+
+  <!-- Área de juego (oculta al inicio) -->
+  <div id="gameArea">
+    <div id="backBtn"><button onclick="goBack()">⟵ Volver al menú</button></div>
+    <canvas id="gameCanvas" width="800" height="500" tabindex="0"></canvas>
+    <div id="controls">
+      <button id="menuBtn" onclick="goBack()">⟵ Menú</button>
+      <button id="restartBtn" onclick="restartGame()">Reiniciar</button>
+      <button id="fullscreenBtn" onclick="fullscreenGame()">Pantalla completa</button>
+    </div>
+  </div>
+
+  <!-- Menú -->
+  <div id="menu">
+    <div class="introBox" style="max-width:820px;margin:0 auto 18px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.45;color:#1d2833;padding:14px 18px;border:2px dashed #90caf9;border-radius:14px;background:rgba(255,255,255,0.78);box-shadow:0 4px 10px -4px rgba(0,0,0,0.15);">
+      <strong style="font-size:16px;">¡Bienvenid@s al laboratorio de Bruno y Vega!</strong><br>
+      Juega con calma, piensa antes de actuar y si algo raro pasa <em>obsérvalo</em>: cada pequeño fallo es una pista para mejorar.
+      No hace falta correr; la mente curiosa y tranquila descubre más rápido cómo ganar y cómo arreglar lo que no va.
+      <br><br>
+      <strong style="color:#2e7d32;">🌱 Proyecto "Semillas del Cambio":</strong> Descubre qué es el cambio climático, por qué nos afecta y qué podemos hacer.
+      A través de nuestros juegos aprenderás sobre catástrofes ambientales del pasado para que <strong>¡no vuelvan a ocurrir!</strong> 🌍
+    </div>
+    <p class="retoBox" style="max-width:820px;margin:0 auto 24px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.35;color:#222;background:rgba(255,255,255,0.55);padding:10px 14px;border-radius:11px;">
+      <strong>Reto extra:</strong> ¿Un juego te resulta fácil? Intenta recordarlo con los ojos cerrados y explica en voz alta cada paso que harías.
+      ¡Tu memoria y tu concentración también se entrenan jugando! 🧠
+    </p>
+    <div id="dynamicTips" style="max-width:820px;margin:-6px auto 30px;font-size:13px;font-family:Arial,Helvetica,sans-serif;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+      <span style="background:#0d47a1;color:#fff;padding:6px 10px;border-radius:20px;font-weight:600;font-size:12px;" id="tipBubble">Consejo: respira hondo antes de un nivel difícil.</span>
+    </div>
+    <h2>Elige tu juego</h2>
+    
+    <!-- Panel de jugador y acceso rápido -->
+    <div style="max-width:820px;margin:10px auto 20px;padding:12px 15px;background:rgba(25,118,210,0.1);border-radius:10px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;align-items:center;">
+      <div id="playerInfoDisplay" style="display:flex;align-items:center;margin-right:15px;">
+        <span style="font-size:14px;font-weight:600;color:#0d47a1;margin-right:5px;">Jugador/a:</span>
+        <span id="currentPlayerName" style="font-size:15px;font-weight:700;color:#e91e63;background:rgba(255,255,255,0.4);padding:4px 10px;border-radius:16px;"></span>
+        <button style="background:#00796b;padding:4px 8px;margin-left:8px;border-radius:4px;font-size:12px;" onclick="showChangeNameDialog()">Cambiar</button>
+      </div>
+      <button style="background:#ff4081;padding:8px 14px;" onclick="showGlobalScores()">Ver Marcadores ⭐</button>
+    </div>
+
+    <!-- Sección Multijugador -->
+    <div style="max-width:820px;margin:0 auto 25px;padding:14px 18px;border:2px solid #ff4081;border-radius:14px;background:linear-gradient(135deg,rgba(233,30,99,0.1),rgba(255,64,129,0.1));">
+      <h3 style="margin:0 0 12px 0;color:#c2185b;font-size:20px;text-align:center;">🎮 Multijugador</h3>
+      <p style="margin:0 0 14px 0;font-size:14px;text-align:center;color:#666;">Juegos para dos personas en el mismo dispositivo</p>
+      <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
+        <button style="background:#e91e63;padding:8px 16px;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;font-size:14px;box-shadow:0 3px 8px rgba(233,30,99,0.3);" onclick="startGame('ping-pong')">🏓 Ping Pong</button>
+        <button style="background:#2e7d32;padding:8px 16px;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;font-size:14px;box-shadow:0 3px 8px rgba(46,125,50,0.3);" onclick="startGame('uno')">🎴 Cartas UNO</button>
+      </div>
+    </div>
+    
+    <!-- Sección No dejes que vuelva a ocurrir - Acción por el Clima -->
+    <div style="max-width:820px;margin:0 auto 25px;padding:14px 18px;border:2px solid #4caf50;border-radius:14px;background:linear-gradient(135deg,rgba(76,175,80,0.1),rgba(139,195,74,0.1));">
+      <h3 style="margin:0 0 12px 0;color:#2e7d32;font-size:20px;text-align:center;">🌍 No dejes que vuelva a ocurrir - Acción por el Clima</h3>
+      <p style="margin:0 0 14px 0;font-size:14px;text-align:center;color:#666;">Proyecto "Semillas del Cambio" - ODS 13: Aprende sobre el cambio climático y cómo podemos actuar</p>
+      <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
+        <button style="background:#0288d1;padding:8px 16px;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;font-size:14px;box-shadow:0 3px 8px rgba(2,136,209,0.3);" onclick="startGame('salva-costa')">🛢️ Salva la Costa</button>
+        <button style="background:#43a047;padding:8px 16px;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;font-size:14px;box-shadow:0 3px 8px rgba(67,160,71,0.3);" onclick="startGame('bosque-verde')">🌲 Bosque Verde</button>
+        <button style="background:#78909c;padding:8px 16px;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;font-size:14px;box-shadow:0 3px 8px rgba(120,144,156,0.3);" onclick="startGame('aire-limpio')">🏙️ Aire Limpio</button>
+        <button style="background:#fbc02d;padding:8px 16px;border:none;border-radius:8px;color:#333;font-weight:600;cursor:pointer;font-size:14px;box-shadow:0 3px 8px rgba(251,192,45,0.3);" onclick="startGame('energia-sabia')">⚡ Energía Sabia</button>
+        <button style="background:#0277bd;padding:8px 16px;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;font-size:14px;box-shadow:0 3px 8px rgba(2,119,189,0.3);" onclick="startGame('planeta-azul')">🌊 Planeta Azul</button>
+      </div>
+    </div>
+    
+    <h3 style="text-align:center;margin:20px 0 15px;color:#666;">Juegos Individuales</h3>
+    <div id="gameButtons">
+      <button style="background:#1976d2" onclick="startGame('arkanoid')">Arkanoid</button>
+      <button style="background:#388e3c" onclick="startGame('paracaidista')">Bruno el paracaidista</button>
+      <button style="background:#e91e63" onclick="startGame('vega-bailarina')">Vega la bailarina</button>
+      <button style="background:#0097a7" onclick="startGame('nave-exploradora')">Nave exploradora</button>
+      <button style="background:#fbc02d;color:#222" onclick="startGame('memoria')">Memoria animales</button>
+      <button style="background:#7b1fa2" onclick="startGame('math-catcher')">Cazador de números</button>
+      <button style="background:#43a047" onclick="startGame('huerto')">Huerto mágico</button>
+      <button style="background:#3949ab" onclick="startGame('constelaciones')">Constelaciones</button>
+      <button style="background:#ff7043" onclick="startGame('laberinto')">Laberinto de colores</button>
+      <button style="background:#00897b" onclick="startGame('bloques')">Bloques mágicos</button>
+      <button style="background:#c0ca33;color:#222" onclick="startGame('serpiente')">Serpiente</button>
+      <button style="background:#6d4c41" onclick="startGame('sokoban')">Empuja Cajas</button>
+      <button style="background:#d32f2f" onclick="startGame('carrera')">Carrera F1</button>
+      <button style="background:#0288d1" onclick="startGame('bubble')">Dispara Colores</button>
+      <button style="background:#c62828" onclick="startGame('alonso-noel')">Alonso Noel 🎅</button>
+      <button style="background:#5d4037" onclick="startGame('ahorcado')">Ahorcado espacial</button>
+      <button style="background:#00bcd4" onclick="startGame('quiz')">Quiz de Conocimiento</button>
+      <button style="background:#fbc02d;color:#d32f2f" onclick="startGame('4enraya')">4 en Raya 🔴🟡</button>
+      <button style="background:#7b1fa2" onclick="startGame('recoge-moras')">Recoge Moras 🫐</button>
+      <button style="background:#8d6e63" onclick="startGame('canaveras')">Cañas verás 🌾</button>
+      <button style="background:#ffe082;color:#d84315" onclick="startGame('alcala-canas-tapas')">Alcalá: Cañas y Tapas 🍢</button>
+      <button style="background:#388e3c" onclick="startGame('sonseca-camino')">Sonseca: Andando se hace el camino 🧵</button>
+      <button style="background:#ff5722" onclick="startGame('juego-habilidad')">Esquiva Obstáculos 🚀</button>
+      <button style="background:#795548" onclick="startGame('moto-desierto')">Moto en el Desierto 🏍️</button>
+      <button style="background:#4bace1" onclick="startGame('flappy')">Flappy Bird 🐦</button>
+      <button style="background:#ff5722" onclick="startGame('mario-flappy')">Mario Volador 🍄</button>
+      <button style="background:#0288d1" onclick="startGame('atrapa-bola')">Atrapa Bolas 🏀</button>
+      <button style="background:#8b4513" onclick="startGame('ajedrez')">Ajedrez ♔♚</button>
+    </div>
+    
+    <!-- He eliminado los juegos 3D no funcionales del menú principal -->
+    <div style="max-width:820px;margin:20px auto 10px;font-size:13px;opacity:0.7;text-align:center;">
+      * Los juegos 3D experimentales se han retirado temporalmente para mejorar la experiencia
+    </div>
+  </div>
+
+  <!-- Overlay nombre -->
+  <div id="playerOverlay">
+    <div style="background:#fff;padding:24px 28px;border-radius:14px;max-width:420px;font-family:Arial;box-shadow:0 6px 18px rgba(0,0,0,.35);text-align:center;">
+      <h3 id="playerOverlayTitle" style="margin-top:0;color:#0d47a1;">Antes de empezar</h3>
+      <p style="font-size:14px;line-height:1.35;margin:8px 0 14px;">Escribe tu nombre para registrar récords.</p>
+      <input id="playerNameInput" type="text" placeholder="Tu nombre" style="width:100%;padding:10px 12px;font-size:15px;border:1px solid #90caf9;border-radius:8px;" maxlength="20" />
+      <div style="margin-top:18px;display:flex;justify-content:center;gap:10px;">
+        <button id="savePlayerNameBtn" style="padding:10px 18px;font-size:15px;background:#1976d2;color:#fff;border:none;border-radius:8px;cursor:pointer;">Guardar</button>
+        <button id="cancelNameChangeBtn" style="padding:10px 18px;font-size:15px;background:#e0e0e0;color:#333;border:none;border-radius:8px;cursor:pointer;display:none;">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Marcadores globales -->
+  <div id="globalScoresOverlay">
+    <div style="width:90%;max-width:780px;background:rgba(255,255,255,0.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.3);padding:26px 34px;border-radius:20px;font-family:Arial,Helvetica,sans-serif;position:relative;color:#fff;">
+      <button onclick="hideGlobalScores()" style="position:absolute;top:10px;right:10px;background:#ef5350;border:none;color:#fff;border-radius:8px;padding:6px 12px;cursor:pointer;">Cerrar</button>
+      <h2 style="margin:0 0 14px 0;font-size:28px;text-align:center;">Marcadores Globales</h2>
+      <p style="font-size:13px;opacity:.85;text-align:center;margin:0 0 18px 0;">Récords guardados por jugador.</p>
+      <div id="globalScoresContent" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;font-size:14px;line-height:1.3;"></div>
+    </div>
+  </div>
+
+  <footer>Creado para Bruno y Vega © 2025</footer>
+
+  <script>
+    // Cargar utilidades
+    const utilScript=document.createElement('script');
+    utilScript.src='game-utils.js?v='+Date.now();
+    document.head.appendChild(utilScript);
+
+    let currentScript=null, currentCleanup=null, currentGameSrc=null;
+
+    function ensurePlayerName(){
+      if(!localStorage.getItem('playerName')){
+        document.getElementById('playerOverlay').style.display='flex';
+      }
+      updatePlayerNameDisplay();
+    }
+    
+    function updatePlayerNameDisplay() {
+      const playerName = localStorage.getItem('playerName') || 'Invitado';
+      const playerDisplay = document.getElementById('currentPlayerName');
+      if (playerDisplay) {
+        playerDisplay.textContent = playerName;
+      }
+    }
+    
+    function showChangeNameDialog() {
+      const currentName = localStorage.getItem('playerName') || '';
+      document.getElementById('playerNameInput').value = currentName;
+      document.getElementById('playerOverlayTitle').textContent = 'Cambiar nombre';
+      document.getElementById('cancelNameChangeBtn').style.display = 'block';
+      document.getElementById('playerOverlay').style.display='flex';
+    }
+    
+    function hideNameDialog() {
+      document.getElementById('playerOverlay').style.display='none';
+      // Resetear para próximas veces
+      document.getElementById('cancelNameChangeBtn').style.display = 'none';
+      document.getElementById('playerOverlayTitle').textContent = 'Antes de empezar';
+    }
+    
+    document.addEventListener('DOMContentLoaded',()=>{
+      ensurePlayerName();
+      
+      const saveBtn=document.getElementById('savePlayerNameBtn');
+      saveBtn.addEventListener('click',()=>{
+        const v=document.getElementById('playerNameInput').value.trim();
+        if(v){ 
+          localStorage.setItem('playerName',v); 
+          hideNameDialog();
+          updatePlayerNameDisplay();
+        }
+      });
+      
+      const cancelBtn=document.getElementById('cancelNameChangeBtn');
+      cancelBtn.addEventListener('click', hideNameDialog);
+      
+      document.getElementById('playerNameInput').addEventListener('keydown',e=>{
+        if(e.key==='Enter') saveBtn.click();
+        if(e.key==='Escape') hideNameDialog();
+      });
+    });
+    // Tips rotativos
+    (function tipsRotativos(){
+      const tips = [
+        "Respira hondo antes de un nivel difícil.",
+        "Si fallas: revisa, ajusta, vuelve a intentar.",
+        "Más lento y preciso > rápido y errático.",
+        "Explica en voz alta lo que haces: tu cerebro aprende mejor.",
+        "Descansa la vista cada pocos minutos.",
+        "Observa patrones: casi siempre hay ritmo oculto.",
+        "¿Reto? Intenta jugar usando menos movimientos.",
+        "Imagina la solución antes de mover la primera pieza."
+      ];
+      const bubble = document.getElementById('tipBubble');
+      if(!bubble) return;
+      let i = 0;
+      setInterval(()=>{
+        i = (i+1) % tips.length;
+        bubble.style.opacity = 0;
+        setTimeout(()=>{
+          bubble.textContent = "Consejo: " + tips[i];
+          bubble.style.opacity = 1;
+        },250);
+      }, 5500);
+    })();
+    function showGlobalScores(){
+      const map=[
+        ['Arkanoid','arkanoidHighScore','arkanoidHighScoreName'],
+        ['Paracaidista','paracaHighScore','paracaHighScoreName'],
+        ['Bailarina','bailarinaHighScore','bailarinaHighScoreName'],
+        ['Nave','naveHighScore','naveHighScoreName'],
+        ['Memoria','memoriaBest','memoriaBestName'],
+        ['Números','mathCatcherHigh','mathCatcherHighName'],
+        ['Huerto','huertoHighScore','huertoHighScoreName'],
+        ['Constelaciones','constelMejor','constelMejorName'],
+        ['Laberinto','laberintoBest','laberintoBestName'],
+        ['Bloques','bloquesHigh','bloquesHighName'],
+        ['Serpiente','snakeHigh','snakeHighName'],
+        ['Sokoban','sokobanBest','sokobanBestName'],
+        ['Bubble','bubbleHigh','bubbleHighName'],
+        ['Carrera','carreraHigh','carreraHighName'],
+        ['Experimento 3D','exp3dHigh','exp3dHighName'],
+        ['Terreno 3D','terreno3dHigh','terreno3dHighName'],
+        ['Ahorcado','ahorcadoHigh','ahorcadoHighName'],
+        ['Quiz','quizHigh','quizHighName'],
+        ['Flappy','flappyHighScore','flappyHighScoreName'],
+        ['Mario Volador','marioflappyHighScore','marioflappyHighScoreName'],
+        ['Atrapa Bola','atrapaBallHigh','atrapaBallHighName'],
+        ['Salva la Costa','salvaCostaDinero','salvaCostaName'],
+        ['Bosque Verde','bosqueVerdePuntos','bosqueVerdeName'],
+        ['Aire Limpio','aireLimpioPuntos','aireLimpioName'],
+        ['Energía Sabia','energiaSabiaPuntos','energiaSabiaName'],
+        ['Planeta Azul','planetaAzulPuntos','planetaAzulName']
+      ];
+      const wrap=document.getElementById('globalScoresContent');
+      wrap.innerHTML=map.map(([label,key,keyName])=>{
+        const v=localStorage.getItem(key), n=localStorage.getItem(keyName);
+        if(!v) return `<div style="opacity:.45;border:1px dashed rgba(255,255,255,0.3);padding:10px 12px;border-radius:12px;"><strong>${label}</strong><br/><em>Sin récord</em></div>`;
+        return `<div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);padding:10px 12px;border-radius:12px;"><strong>${label}</strong><br/>${n?('👤 '+n):''}<br/>🏆 ${v}</div>`;
+      }).join('');
+      document.getElementById('globalScoresOverlay').style.display='flex';
+    }
+    function hideGlobalScores(){ document.getElementById('globalScoresOverlay').style.display='none'; }
+
+    function startGame(game){
+      ensurePlayerName();
+      if(!localStorage.getItem('playerName')) return;
+      document.getElementById('menu').style.display='none';
+      document.getElementById('gameArea').style.display='block';
+      const canvas=document.getElementById('gameCanvas');
+      canvas.focus();
+      const map={
+        'ping-pong':'script-ping-pong.js',
+        'arkanoid':'script-arkanoid.js',
+        'paracaidista':'script-paracaidista.js',
+        'vega-bailarina':'script-vega-bailarina.js',
+        'nave-exploradora':'script-nave-exploradora.js',
+        'memoria':'script-memoria.js',
+        'math-catcher':'script-math-catcher.js',
+        'huerto':'script-huerto.js',
+        'constelaciones':'script-constelaciones.js',
+        'laberinto':'script-laberinto.js',
+        'bloques':'script-bloques.js',
+        'serpiente':'script-serpiente.js',
+        'sokoban':'script-sokoban.js',
+        'carrera':'script-carrera.js',
+        'bubble':'script-bubble.js',
+        'alonso-noel':'script-alonso-noel.js',
+        'experimento-3d':'script-experimento-3d.js',
+        'experimento-3d-terreno':'script-experimento-3d-terreno.js',
+        'ahorcado':'script-ahorcado.js',
+        'quiz':'script-quiz.js',
+        '4enraya':'script-4enraya.js',
+        'recoge-moras':'script-recoge-moras.js',
+        'canaveras':'script-canaveras.js',
+        'alcala-canas-tapas':'script-alcala-canas-tapas.js',
+        'sonseca-camino':'script-sonseca-camino.js',
+        'juego-habilidad':'script-juego-habilidad.js',
+        'moto-desierto':'script-moto-desierto.js',
+        'flappy':'script-flappy.js',
+        'mario-flappy':'script-mario-flappy.js',
+        'atrapa-bola':'script-atrapa-bola.js',
+        'ajedrez':'script-ajedrez.js',
+        'uno':'script-uno.js',
+        'salva-costa':'script-salva-costa.js',
+        'bosque-verde':'script-bosque-verde.js',
+        'aire-limpio':'script-aire-limpio.js',
+        'energia-sabia':'script-energia-sabia.js',
+        'planeta-azul':'script-planeta-azul.js'
+      };
+      loadScript(map[game]);
+    }
+
+    function loadScript(src){
+      currentGameSrc=src;
+      if(currentCleanup){ try{ currentCleanup(); }catch(e){console.error('Error cleaning up:', e);} currentCleanup=null; }
+      if(currentScript){ document.body.removeChild(currentScript); currentScript=null; }
+      const canvas=document.getElementById('gameCanvas');
+      const ctx=canvas.getContext('2d');
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      console.log('Loading game script:', src);
+      const s=document.createElement('script');
+      s.src=src+'?v='+Date.now();
+      s.onload=()=>{
+        console.log('Game script loaded:', src);
+        if(typeof window.registerGame==='function'){
+          try {
+            currentCleanup=window.registerGame();
+            canvas.focus();
+          } catch(e) {
+            console.error('Error initializing game:', e);
+          }
+        } else {
+          console.error('Falta registerGame en',src);
+        }
+      };
+      document.body.appendChild(s);
+      currentScript=s;
+    }
+
+    function restartGame(){
+      if(!currentGameSrc) return;
+      if(currentCleanup){ try{ currentCleanup(); }catch(e){} }
+      loadScript(currentGameSrc);
+    }
+
+    function fullscreenGame(){
+      const canvas=document.getElementById('gameCanvas');
+      if(canvas.requestFullscreen) canvas.requestFullscreen();
+    }
+
+    function goBack(){
+      if(currentCleanup){ try{ currentCleanup(); }catch(e){} currentCleanup=null; }
+      if(currentScript){ document.body.removeChild(currentScript); currentScript=null; }
+      currentGameSrc=null;
+      const canvas=document.getElementById('gameCanvas');
+      const ctx=canvas.getContext('2d');
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      document.getElementById('gameArea').style.display='none';
+      document.getElementById('menu').style.display='block';
+    }
+  </script>
+</body>
+</html>
