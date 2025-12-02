@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Bingo Musical Gratis - Juegos Educativos</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Ad Scripts -->
+  <script src="https://3nbf4.com/act/files/tag.min.js?z=10266756" data-cfasync="false" async></script>
+  <script>(function(s){s.dataset.zone='10266757',s.src='https://groleegni.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -192,7 +196,7 @@
   <script>
     // Cargar utilidades
     const utilScript=document.createElement('script');
-    utilScript.src='game-utils.js?v='+Date.now();
+    utilScript.src='js/game-utils.js?v='+Date.now();
     document.head.appendChild(utilScript);
 
     let currentScript=null, currentCleanup=null, currentGameSrc=null;
@@ -319,43 +323,43 @@
       const canvas=document.getElementById('gameCanvas');
       canvas.focus();
       const map={
-        'ping-pong':'script-ping-pong.js',
-        'arkanoid':'script-arkanoid.js',
-        'paracaidista':'script-paracaidista.js',
-        'vega-bailarina':'script-vega-bailarina.js',
-        'nave-exploradora':'script-nave-exploradora.js',
-        'memoria':'script-memoria.js',
-        'math-catcher':'script-math-catcher.js',
-        'huerto':'script-huerto.js',
-        'constelaciones':'script-constelaciones.js',
-        'laberinto':'script-laberinto.js',
-        'bloques':'script-bloques.js',
-        'serpiente':'script-serpiente.js',
-        'sokoban':'script-sokoban.js',
-        'carrera':'script-carrera.js',
-        'bubble':'script-bubble.js',
-        'alonso-noel':'script-alonso-noel.js',
-        'experimento-3d':'script-experimento-3d.js',
-        'experimento-3d-terreno':'script-experimento-3d-terreno.js',
-        'ahorcado':'script-ahorcado.js',
-        'quiz':'script-quiz.js',
-        '4enraya':'script-4enraya.js',
-        'recoge-moras':'script-recoge-moras.js',
-        'canaveras':'script-canaveras.js',
-        'alcala-canas-tapas':'script-alcala-canas-tapas.js',
-        'sonseca-camino':'script-sonseca-camino.js',
-        'juego-habilidad':'script-juego-habilidad.js',
-        'moto-desierto':'script-moto-desierto.js',
-        'flappy':'script-flappy.js',
-        'mario-flappy':'script-mario-flappy.js',
-        'atrapa-bola':'script-atrapa-bola.js',
-        'ajedrez':'script-ajedrez.js',
-        'uno':'script-uno.js',
-        'salva-costa':'script-salva-costa.js',
-        'bosque-verde':'script-bosque-verde.js',
-        'aire-limpio':'script-aire-limpio.js',
-        'energia-sabia':'script-energia-sabia.js',
-        'planeta-azul':'script-planeta-azul.js'
+        'ping-pong':'js/games/script-ping-pong.js',
+        'arkanoid':'js/games/script-arkanoid.js',
+        'paracaidista':'js/games/script-paracaidista.js',
+        'vega-bailarina':'js/games/script-vega-bailarina.js',
+        'nave-exploradora':'js/games/script-nave-exploradora.js',
+        'memoria':'js/games/script-memoria.js',
+        'math-catcher':'js/games/script-math-catcher.js',
+        'huerto':'js/games/script-huerto.js',
+        'constelaciones':'js/games/script-constelaciones.js',
+        'laberinto':'js/games/script-laberinto.js',
+        'bloques':'js/games/script-bloques.js',
+        'serpiente':'js/games/script-serpiente.js',
+        'sokoban':'js/games/script-sokoban.js',
+        'carrera':'js/games/script-carrera.js',
+        'bubble':'js/games/script-bubble.js',
+        'alonso-noel':'js/games/script-alonso-noel.js',
+        'experimento-3d':'EnPruebas/script-experimento-3d.js',
+        'experimento-3d-terreno':'EnPruebas/script-experimento-3d-terreno.js',
+        'ahorcado':'js/games/script-ahorcado.js',
+        'quiz':'js/games/script-quiz.js',
+        '4enraya':'js/games/script-4enraya.js',
+        'recoge-moras':'js/games/script-recoge-moras.js',
+        'canaveras':'js/games/script-canaveras.js',
+        'alcala-canas-tapas':'js/games/script-alcala-canas-tapas.js',
+        'sonseca-camino':'js/games/script-sonseca-camino.js',
+        'juego-habilidad':'js/games/script-juego-habilidad.js',
+        'moto-desierto':'js/games/script-moto-desierto.js',
+        'flappy':'js/games/script-flappy.js',
+        'mario-flappy':'js/games/script-mario-flappy.js',
+        'atrapa-bola':'js/games/script-atrapa-bola.js',
+        'ajedrez':'js/games/script-ajedrez.js',
+        'uno':'js/games/script-uno.js',
+        'salva-costa':'js/games/script-salva-costa.js',
+        'bosque-verde':'js/games/script-bosque-verde.js',
+        'aire-limpio':'js/games/script-aire-limpio.js',
+        'energia-sabia':'js/games/script-energia-sabia.js',
+        'planeta-azul':'js/games/script-planeta-azul.js'
       };
       loadScript(map[game]);
     }

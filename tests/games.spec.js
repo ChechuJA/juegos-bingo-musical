@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Bruno y Vega Games', () => {
+test.describe('Bingo Musical Gratis Games', () => {
   test('main page loads correctly', async ({ page }) => {
     await page.goto('/');
-    await expect(page).toHaveTitle(/El juego de Bruno y Vega/);
+    await expect(page).toHaveTitle(/Bingo Musical Gratis/);
     await expect(page.locator('h2')).toContainText('Elige tu juego');
   });
 

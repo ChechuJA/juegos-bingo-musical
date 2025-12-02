@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Simple game verification script
-echo "🎮 Verificando juegos de Bruno y Vega..."
+echo "🎮 Verificando juegos de Bingo Musical Gratis..."
 
 # Check if server is running
 if ! curl -s http://localhost:8000 > /dev/null 2>&1; then
@@ -21,7 +21,7 @@ fi
 
 # Test ping pong script
 echo "🏓 Verificando Ping Pong..."
-if curl -f -s http://localhost:8000/script-ping-pong.js > /dev/null; then
+if curl -f -s http://localhost:8000/js/games/script-ping-pong.js > /dev/null; then
     echo "✅ Ping Pong OK"
 else
     echo "❌ Error en Ping Pong"
@@ -29,7 +29,7 @@ else
 fi
 
 # Test other critical games
-games=("script-arkanoid.js" "script-4enraya.js" "script-memoria.js")
+games=("js/games/script-arkanoid.js" "js/games/script-4enraya.js" "js/games/script-memoria.js")
 for game in "${games[@]}"; do
     if curl -f -s "http://localhost:8000/$game" > /dev/null; then
         echo "✅ $game OK"
