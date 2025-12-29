@@ -44,7 +44,19 @@ Crear una sección completa de juegos educativos prácticos tipo "learning by do
 - [x] Contenido educativo sobre tornillos, herramientas y errores comunes
 - [x] Integración en menú principal
 
-**Progreso: 4/10 juegos completados (40%)**
+### 🚨 Seguridad en el Hogar
+- [x] 3 niveles progresivos (cocina → baño → casa completa)
+- [x] Sistema de detección de riesgos (click en zona peligrosa)
+- [x] 6 tipos de riesgos (eléctrico, fuego, química, caída, corte, agua, ahogo)
+- [x] Nivel 1: 5 riesgos en cocina (fuego, enchufe, cuchillo, extintor, productos)
+- [x] Nivel 2: 5 riesgos en baño (electricidad+agua, caídas, químicos, ahogo infantil, medicamentos)
+- [x] Nivel 3: 6 riesgos en casa completa (escalera, cable, juguetes, ventana, detector, productos)
+- [x] Explicaciones detalladas de cada riesgo con prevención y emergencias
+- [x] Números de emergencia (112, toxicología 915 620 420)
+- [x] Contenido educativo vital (puede salvar vidas)
+- [x] Integración en menú principal
+
+**Progreso: 5/10 juegos completados (50%)**
 
 ---
 

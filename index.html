@@ -117,16 +117,6 @@
       </div>
     </div>
     
-    <!-- Sección Juega y Aprende -->
-    <div style="max-width:820px;margin:0 auto 25px;padding:14px 18px;border:2px solid #ff9800;border-radius:14px;background:linear-gradient(135deg,rgba(255,152,0,0.1),rgba(255,193,7,0.1));">
-      <h3 style="margin:0 0 12px 0;color:#e65100;font-size:20px;text-align:center;">💡 Juega y Aprende</h3>
-      <p style="margin:0 0 14px 0;font-size:14px;text-align:center;color:#666;">Aprende conceptos importantes mientras te diviertes</p>
-      <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
-        <button style="background:#ff9800;padding:8px 16px;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;font-size:14px;box-shadow:0 3px 8px rgba(255,152,0,0.3);" onclick="startGame('electricidad')">⚡ Aprende Electricidad</button>
-      </div>
-    </div>
-    
-    <!-- Sección No dejes que vuelva a ocurrir - Acción por el Clima -->
     <!-- Sección: Juega y Aprende -->
     <div style="max-width:820px;margin:0 auto 25px;padding:14px 18px;border:2px solid #1976d2;border-radius:14px;background:linear-gradient(135deg,rgba(25,118,210,0.1),rgba(33,150,243,0.1));">
       <h3 style="margin:0 0 12px 0;color:#1565c0;font-size:20px;text-align:center;">💡 Juega y Aprende - Habilidades Prácticas</h3>
@@ -136,6 +126,7 @@
         <button style="background:#2e7d32;padding:8px 16px;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;font-size:14px;box-shadow:0 3px 8px rgba(46,125,50,0.3);" onclick="startGame('reciclaje')">♻️ Clasifica la Basura</button>
         <button style="background:#0277bd;padding:8px 16px;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;font-size:14px;box-shadow:0 3px 8px rgba(2,119,189,0.3);" onclick="startGame('fontaneria')">🚰 Aprende Fontanería</button>
         <button style="background:#8b4513;padding:8px 16px;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;font-size:14px;box-shadow:0 3px 8px rgba(139,69,19,0.3);" onclick="startGame('monta-mueble')">🪑 Monta un Mueble</button>
+        <button style="background:#c62828;padding:8px 16px;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;font-size:14px;box-shadow:0 3px 8px rgba(198,40,40,0.3);" onclick="startGame('seguridad-hogar')">🚨 Seguridad en el Hogar</button>
       </div>
     </div>
     
@@ -329,7 +320,8 @@
         ['Electricidad','electricidadBest','electricidadBestName'],
         ['Reciclaje','reciclajeBest','reciclajeBestName'],
         ['Fontanería','fontaneriaBest','fontaneriaBestName'],
-        ['Monta Mueble','montaMuebleBest','montaMuebleBestName']
+        ['Monta Mueble','montaMuebleBest','montaMuebleBestName'],
+        ['Seguridad Hogar','seguridadHogarBest','seguridadHogarBestName']
       ];
       const wrap=document.getElementById('globalScoresContent');
       wrap.innerHTML=map.map(([label,key,keyName])=>{
@@ -389,7 +381,8 @@
         'electricidad':'js/games/script-electricidad.js',
         'reciclaje':'js/games/script-reciclaje.js',
         'fontaneria':'js/games/script-fontaneria.js',
-        'monta-mueble':'js/games/script-monta-mueble.js'
+        'monta-mueble':'js/games/script-monta-mueble.js',
+        'seguridad-hogar':'js/games/script-seguridad-hogar.js'
       };
       loadScript(map[game]);
     }

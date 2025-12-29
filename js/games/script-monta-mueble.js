@@ -1,6 +1,4 @@
-window.registerGame = window.registerGame || function(initFn) { initFn(); };
-
-window.registerGame(function() {
+function registerGame() {
     const canvas = document.getElementById('gameCanvas');
     if (!canvas) {
         console.error('Canvas gameCanvas no encontrado');
@@ -945,4 +943,6 @@ casi cualquier mueble siguiendo instrucciones.`
         canvas.removeEventListener('mouseup', handleMouseUp);
         canvas.removeEventListener('mouseleave', handleMouseLeave);
     };
-});
+}
+
+window.registerGame = registerGame;

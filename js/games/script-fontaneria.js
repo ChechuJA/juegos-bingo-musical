@@ -1,4 +1,4 @@
-window.registerGame = function() {
+function registerGame() {
 // ============================================
 // JUEGO EDUCATIVO: APRENDE FONTANERÍA 🚰
 // ============================================
@@ -1364,4 +1364,6 @@ return function cleanup() {
   canvas.removeEventListener('mouseup', handleMouseUp);
 };
 
-}; // Fin de window.registerGame
+}
+
+window.registerGame = registerGame;

@@ -1,4 +1,4 @@
-window.registerGame = function() {
+function registerGame() {
 // ============================================
 // JUEGO EDUCATIVO: CLASIFICA LA BASURA ♻️
 // ============================================
@@ -986,4 +986,6 @@ return function cleanup() {
   canvas.removeEventListener('mouseup', handleMouseUp);
 };
 
-}; // Fin de window.registerGame
+}
+
+window.registerGame = registerGame;
