@@ -171,6 +171,7 @@ let score = 0;
 let bestScore = Number(localStorage.getItem('electricidadBest')) || 0;
 let testResult = null;
 let showingEducation = false;
+let showingSolution = true; // Mostrar diagrama de solución al inicio
 
 // ============================================
 // ÁREAS DE LA INTERFAZ
@@ -196,6 +197,7 @@ function initLevel(levelIndex) {
   wireStart = null;
   testResult = null;
   showingEducation = false;
+  showingSolution = true; // Mostrar solución al inicio del nivel
   
   // Agregar elementos fijos
   if(level.fixedElements) {
@@ -238,7 +240,7 @@ function drawMenu() {
   
   // Información educativa
   ctx.fillStyle = 'rgba(255,255,255,0.15)';
-  roundRect(ctx, 100, 150, canvas.width - 200, 80, 12);
+  roundRect(ctx, 100, 160, canvas.width - 200, 100, 12);
   ctx.fill();
   
   ctx.fillStyle = '#fff';
@@ -252,12 +254,12 @@ function drawMenu() {
   ];
   
   infoText.forEach((line, i) => {
-    ctx.fillText(line, 120, 180 + i * 22);
+    ctx.fillText(line, 120, 190 + i * 22);
   });
   
   // Botones de niveles
   ctx.textAlign = 'center';
-  const startY = 270;
+  const startY = 290;
   const spacing = 70;
   
   for(let i = 0; i < LEVELS.length; i++) {
@@ -908,6 +910,332 @@ function drawInfoPanel() {
 }
 
 // ============================================
+// PANTALLA DE DIAGRAMA DE SOLUCIÓN
+// ============================================
+function drawSolutionDiagram() {
+  const level = LEVELS[currentLevel];
+  
+  ctx.save();
+  
+  // Oscurecer fondo
+  ctx.fillStyle = 'rgba(0,0,0,0.85)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  // Panel central más grande
+  const panelW = 700;
+  const panelH = 520;
+  const panelX = (canvas.width - panelW) / 2;
+  const panelY = (canvas.height - panelH) / 2;
+  
+  ctx.fillStyle = '#fff';
+  roundRect(ctx, panelX, panelY, panelW, panelH, 15);
+  ctx.fill();
+  ctx.strokeStyle = '#1976d2';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+  
+  // Título
+  ctx.fillStyle = '#1976d2';
+  ctx.font = 'bold 26px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText(`📋 Nivel ${currentLevel + 1}: ${level.name}`, canvas.width/2, panelY + 40);
+  
+  ctx.font = '15px Arial';
+  ctx.fillStyle = '#666';
+  ctx.fillText('Objetivo: ' + level.description, canvas.width/2, panelY + 65);
+  
+  // Diagrama según el nivel
+  const diagramY = panelY + 100;
+  const diagramX = panelX + 50;
+  
+  ctx.textAlign = 'left';
+  ctx.font = 'bold 16px Arial';
+  ctx.fillStyle = '#333';
+  
+  if(currentLevel <= 1) {
+    // Nivel 1 y 2: Circuito básico
+    ctx.fillText('🔌 Cómo conectar:', diagramX, diagramY);
+    
+    const startX = diagramX + 20;
+    const startY = diagramY + 30;
+    const spacing = 80;
+    
+    // Dibujar diagrama simple
+    ctx.font = '14px Arial';
+    ctx.fillStyle = '#8B0000';
+    ctx.fillText('1. Fase (L)', startX, startY);
+    ctx.strokeStyle = '#8B0000';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(startX, startY + 10);
+    ctx.lineTo(startX + spacing, startY + 10);
+    ctx.stroke();
+    
+    ctx.fillStyle = '#666';
+    ctx.fillText('2. Interruptor', startX + spacing, startY);
+    ctx.fillRect(startX + spacing - 5, startY + 5, 40, 20);
+    ctx.strokeStyle = '#8B0000';
+    ctx.beginPath();
+    ctx.moveTo(startX + spacing + 35, startY + 10);
+    ctx.lineTo(startX + spacing * 2, startY + 10);
+    ctx.stroke();
+    
+    ctx.fillStyle = '#FFD700';
+    ctx.fillText('3. Bombilla', startX + spacing * 2, startY);
+    ctx.beginPath();
+    ctx.arc(startX + spacing * 2 + 20, startY + 15, 12, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = '#999';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    
+    // Neutro
+    ctx.fillStyle = '#0000CD';
+    ctx.font = '14px Arial';
+    ctx.fillText('Neutro (N)', startX, startY + 60);
+    ctx.strokeStyle = '#0000CD';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(startX, startY + 70);
+    ctx.lineTo(startX + spacing * 2 + 20, startY + 70);
+    ctx.stroke();
+    
+    // Flechas de dirección
+    ctx.strokeStyle = '#4caf50';
+    ctx.fillStyle = '#4caf50';
+    ctx.lineWidth = 2;
+    for(let i = 0; i < 3; i++) {
+      const arrowX = startX + spacing * 0.5 + i * spacing * 0.7;
+      ctx.beginPath();
+      ctx.moveTo(arrowX, startY + 10);
+      ctx.lineTo(arrowX + 10, startY + 5);
+      ctx.moveTo(arrowX, startY + 10);
+      ctx.lineTo(arrowX + 10, startY + 15);
+      ctx.stroke();
+    }
+    
+    // Instrucciones paso a paso
+    ctx.fillStyle = '#333';
+    ctx.font = '14px Arial';
+    const instructions = [
+      '① Selecciona "Fase" en el panel izquierdo',
+      '② Haz clic en L (Fase), luego en el interruptor',
+      '③ Conecta el interruptor con la bombilla (fase)',
+      '④ Selecciona "Neutro" y conecta N con la bombilla',
+      '⑤ Coloca el interruptor en el área central',
+      '⑥ Coloca la bombilla',
+      '⑦ Haz clic en "Probar Circuito" - ¡debe encender!',
+      '',
+      '⚡ IMPORTANTE: El interruptor corta la FASE, no el neutro'
+    ];
+    
+    let y = startY + 110;
+    for(const inst of instructions) {
+      if(inst === '') {
+        y += 10;
+        continue;
+      }
+      if(inst.includes('IMPORTANTE')) {
+        ctx.font = 'bold 14px Arial';
+        ctx.fillStyle = '#f44336';
+      } else {
+        ctx.font = '14px Arial';
+        ctx.fillStyle = '#333';
+      }
+      ctx.fillText(inst, diagramX + 20, y);
+      y += 22;
+    }
+  }
+  else if(currentLevel === 2) {
+    // Nivel 3: Conmutada
+    ctx.fillText('🔀 Circuito Conmutado (Escalera):', diagramX, diagramY);
+    
+    ctx.font = '13px Arial';
+    ctx.fillStyle = '#666';
+    ctx.fillText('Permite encender/apagar la luz desde dos puntos diferentes', diagramX + 20, diagramY + 25);
+    
+    const startX = diagramX + 40;
+    const startY = diagramY + 60;
+    
+    // Diagrama conmutada
+    ctx.strokeStyle = '#8B0000';
+    ctx.lineWidth = 3;
+    ctx.fillStyle = '#8B0000';
+    ctx.fillText('Fase', startX - 20, startY);
+    ctx.beginPath();
+    ctx.moveTo(startX, startY);
+    ctx.lineTo(startX + 60, startY);
+    ctx.stroke();
+    
+    // Conmutador 1
+    ctx.fillStyle = '#555';
+    ctx.fillRect(startX + 60, startY - 15, 30, 30);
+    ctx.fillStyle = '#fff';
+    ctx.font = '10px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('C1', startX + 75, startY + 5);
+    
+    // Viajeros (retornos)
+    ctx.strokeStyle = '#000';
+    ctx.beginPath();
+    ctx.moveTo(startX + 90, startY - 10);
+    ctx.lineTo(startX + 200, startY - 10);
+    ctx.moveTo(startX + 90, startY + 10);
+    ctx.lineTo(startX + 200, startY + 10);
+    ctx.stroke();
+    
+    ctx.fillStyle = '#000';
+    ctx.font = '11px Arial';
+    ctx.fillText('Viajeros', startX + 140, startY - 20);
+    
+    // Conmutador 2
+    ctx.fillStyle = '#555';
+    ctx.fillRect(startX + 200, startY - 15, 30, 30);
+    ctx.fillStyle = '#fff';
+    ctx.font = '10px Arial';
+    ctx.fillText('C2', startX + 215, startY + 5);
+    
+    // Bombilla
+    ctx.strokeStyle = '#8B0000';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(startX + 230, startY);
+    ctx.lineTo(startX + 280, startY);
+    ctx.stroke();
+    
+    ctx.fillStyle = '#FFD700';
+    ctx.beginPath();
+    ctx.arc(startX + 300, startY, 12, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Neutro
+    ctx.strokeStyle = '#0000CD';
+    ctx.beginPath();
+    ctx.moveTo(startX, startY + 40);
+    ctx.lineTo(startX + 300, startY + 40);
+    ctx.stroke();
+    ctx.fillStyle = '#0000CD';
+    ctx.font = '13px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText('Neutro', startX - 20, startY + 45);
+    
+    // Instrucciones
+    ctx.fillStyle = '#333';
+    ctx.font = '14px Arial';
+    const instructions = [
+      '① Arrastra 2 CONMUTADORES al área central',
+      '② Conecta Fase → Conmutador 1',
+      '③ Selecciona "Retorno" (cable negro)',
+      '④ Conecta ambos conmutadores con 2 cables retorno',
+      '⑤ Conecta Conmutador 2 → Bombilla',
+      '⑥ Conecta Neutro → Bombilla',
+      '',
+      '💡 Los conmutadores deben estar en la misma posición'
+    ];
+    
+    let y = startY + 90;
+    for(const inst of instructions) {
+      if(inst === '') {
+        y += 8;
+        continue;
+      }
+      ctx.fillText(inst, diagramX + 20, y);
+      y += 20;
+    }
+  }
+  else if(currentLevel === 3) {
+    // Nivel 4: Cruzamiento
+    ctx.fillText('⚡ Conmutada con Cruzamiento:', diagramX, diagramY);
+    
+    ctx.font = '13px Arial';
+    ctx.fillStyle = '#666';
+    ctx.fillText('Control desde 3 puntos - Pasillo largo', diagramX + 20, diagramY + 25);
+    
+    const startX = diagramX + 30;
+    const startY = diagramY + 60;
+    
+    // Diagrama simplificado
+    ctx.strokeStyle = '#8B0000';
+    ctx.lineWidth = 2;
+    ctx.fillStyle = '#8B0000';
+    ctx.font = '12px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText('Fase', startX, startY);
+    
+    // Línea principal
+    ctx.beginPath();
+    ctx.moveTo(startX + 35, startY);
+    ctx.lineTo(startX + 60, startY);
+    ctx.stroke();
+    
+    // Componentes en línea
+    const spacing = 70;
+    ['C1', 'CRUZ', 'C2', 'Luz'].forEach((label, i) => {
+      const x = startX + 60 + i * spacing;
+      
+      if(label.includes('C') || label === 'CRUZ') {
+        ctx.fillStyle = label === 'CRUZ' ? '#444' : '#555';
+        ctx.fillRect(x - 12, startY - 12, 24, 24);
+        ctx.fillStyle = '#fff';
+        ctx.font = '9px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(label, x, startY + 3);
+      } else {
+        ctx.fillStyle = '#FFD700';
+        ctx.beginPath();
+        ctx.arc(x, startY, 10, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      
+      if(i < 3) {
+        ctx.strokeStyle = i === 0 || i === 2 ? '#8B0000' : '#000';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(x + 12, startY);
+        ctx.lineTo(x + spacing - 12, startY);
+        ctx.stroke();
+      }
+    });
+    
+    // Instrucciones
+    ctx.fillStyle = '#333';
+    ctx.font = '14px Arial';
+    ctx.textAlign = 'left';
+    const instructions = [
+      '① Coloca 2 CONMUTADORES en los extremos',
+      '② Coloca 1 CRUZAMIENTO en medio',
+      '③ Conecta: Fase → C1 → Retornos → CRUZ → Retornos → C2 → Luz',
+      '④ Necesitas 4 cables retorno en total',
+      '⑤ No olvides conectar el neutro',
+      '',
+      '📚 Este sistema se usa en pasillos largos con 3+ interruptores'
+    ];
+    
+    let y = startY + 60;
+    for(const inst of instructions) {
+      if(inst === '') {
+        y += 8;
+        continue;
+      }
+      ctx.fillText(inst, diagramX + 20, y);
+      y += 22;
+    }
+  }
+  
+  // Botón entendido
+  const btnY = panelY + panelH - 60;
+  ctx.fillStyle = '#1976d2';
+  roundRect(ctx, canvas.width/2 - 100, btnY, 200, 45, 8);
+  ctx.fill();
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 18px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText('¡Entendido, empecemos!', canvas.width/2, btnY + 28);
+  
+  ctx.restore();
+}
+
+// ============================================
 // PANTALLA DE EDUCACIÓN
 // ============================================
 function drawEducationScreen() {
@@ -1245,6 +1573,21 @@ function loop() {
 // ============================================
 function handleClick(e) {
   const pos = getMousePos(e);
+  
+  // Si está mostrando el diagrama de solución, cerrarlo
+  if(showingSolution) {
+    const panelW = 700;
+    const panelH = 520;
+    const panelX = (canvas.width - panelW) / 2;
+    const panelY = (canvas.height - panelH) / 2;
+    const btnY = panelY + panelH - 60;
+    
+    if(isInsideRect(pos.x, pos.y, canvas.width/2 - 100, btnY, 200, 45)) {
+      showingSolution = false;
+      return;
+    }
+    return; // Bloquear otros clics mientras se muestra
+  }
   
   if(gameState === 'menu') {
     // Detectar clic en niveles

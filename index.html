@@ -127,6 +127,18 @@
     </div>
     
     <!-- Sección No dejes que vuelva a ocurrir - Acción por el Clima -->
+    <!-- Sección: Juega y Aprende -->
+    <div style="max-width:820px;margin:0 auto 25px;padding:14px 18px;border:2px solid #1976d2;border-radius:14px;background:linear-gradient(135deg,rgba(25,118,210,0.1),rgba(33,150,243,0.1));">
+      <h3 style="margin:0 0 12px 0;color:#1565c0;font-size:20px;text-align:center;">💡 Juega y Aprende - Habilidades Prácticas</h3>
+      <p style="margin:0 0 14px 0;font-size:14px;text-align:center;color:#666;">Aprende habilidades útiles para la vida real de forma divertida</p>
+      <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
+        <button style="background:#fbc02d;padding:8px 16px;border:none;border-radius:8px;color:#333;font-weight:600;cursor:pointer;font-size:14px;box-shadow:0 3px 8px rgba(251,192,45,0.3);" onclick="startGame('electricidad')">⚡ Aprende Electricidad</button>
+        <button style="background:#2e7d32;padding:8px 16px;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;font-size:14px;box-shadow:0 3px 8px rgba(46,125,50,0.3);" onclick="startGame('reciclaje')">♻️ Clasifica la Basura</button>
+        <button style="background:#0277bd;padding:8px 16px;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;font-size:14px;box-shadow:0 3px 8px rgba(2,119,189,0.3);" onclick="startGame('fontaneria')">🚰 Aprende Fontanería</button>
+      </div>
+    </div>
+    
+    <!-- Sección: Acción por el Clima -->
     <div style="max-width:820px;margin:0 auto 25px;padding:14px 18px;border:2px solid #4caf50;border-radius:14px;background:linear-gradient(135deg,rgba(76,175,80,0.1),rgba(139,195,74,0.1));">
       <h3 style="margin:0 0 12px 0;color:#2e7d32;font-size:20px;text-align:center;">🌍 No dejes que vuelva a ocurrir - Acción por el Clima</h3>
       <p style="margin:0 0 14px 0;font-size:14px;text-align:center;color:#666;">Proyecto "Semillas del Cambio" - ODS 13: Aprende sobre el cambio climático y cómo podemos actuar</p>
@@ -313,7 +325,9 @@
         ['Aire Limpio','aireLimpioPuntos','aireLimpioName'],
         ['Energía Sabia','energiaSabiaPuntos','energiaSabiaName'],
         ['Planeta Azul','planetaAzulPuntos','planetaAzulName'],
-        ['Electricidad','electricidadBest','electricidadBestName']
+        ['Electricidad','electricidadBest','electricidadBestName'],
+        ['Reciclaje','reciclajeBest','reciclajeBestName'],
+        ['Fontanería','fontaneriaBest','fontaneriaBestName']
       ];
       const wrap=document.getElementById('globalScoresContent');
       wrap.innerHTML=map.map(([label,key,keyName])=>{
@@ -370,7 +384,9 @@
         'aire-limpio':'js/games/script-aire-limpio.js',
         'energia-sabia':'js/games/script-energia-sabia.js',
         'planeta-azul':'js/games/script-planeta-azul.js',
-        'electricidad':'js/games/script-electricidad.js'
+        'electricidad':'js/games/script-electricidad.js',
+        'reciclaje':'js/games/script-reciclaje.js',
+        'fontaneria':'js/games/script-fontaneria.js'
       };
       loadScript(map[game]);
     }
