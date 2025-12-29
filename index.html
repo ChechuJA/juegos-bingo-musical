@@ -135,6 +135,7 @@
         <button style="background:#fbc02d;padding:8px 16px;border:none;border-radius:8px;color:#333;font-weight:600;cursor:pointer;font-size:14px;box-shadow:0 3px 8px rgba(251,192,45,0.3);" onclick="startGame('electricidad')">⚡ Aprende Electricidad</button>
         <button style="background:#2e7d32;padding:8px 16px;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;font-size:14px;box-shadow:0 3px 8px rgba(46,125,50,0.3);" onclick="startGame('reciclaje')">♻️ Clasifica la Basura</button>
         <button style="background:#0277bd;padding:8px 16px;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;font-size:14px;box-shadow:0 3px 8px rgba(2,119,189,0.3);" onclick="startGame('fontaneria')">🚰 Aprende Fontanería</button>
+        <button style="background:#8b4513;padding:8px 16px;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;font-size:14px;box-shadow:0 3px 8px rgba(139,69,19,0.3);" onclick="startGame('monta-mueble')">🪑 Monta un Mueble</button>
       </div>
     </div>
     
@@ -327,7 +328,8 @@
         ['Planeta Azul','planetaAzulPuntos','planetaAzulName'],
         ['Electricidad','electricidadBest','electricidadBestName'],
         ['Reciclaje','reciclajeBest','reciclajeBestName'],
-        ['Fontanería','fontaneriaBest','fontaneriaBestName']
+        ['Fontanería','fontaneriaBest','fontaneriaBestName'],
+        ['Monta Mueble','montaMuebleBest','montaMuebleBestName']
       ];
       const wrap=document.getElementById('globalScoresContent');
       wrap.innerHTML=map.map(([label,key,keyName])=>{
@@ -386,7 +388,8 @@
         'planeta-azul':'js/games/script-planeta-azul.js',
         'electricidad':'js/games/script-electricidad.js',
         'reciclaje':'js/games/script-reciclaje.js',
-        'fontaneria':'js/games/script-fontaneria.js'
+        'fontaneria':'js/games/script-fontaneria.js',
+        'monta-mueble':'js/games/script-monta-mueble.js'
       };
       loadScript(map[game]);
     }

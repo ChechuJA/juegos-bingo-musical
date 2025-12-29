@@ -24,6 +24,28 @@ Crear una sección completa de juegos educativos prácticos tipo "learning by do
 - [x] Pantallas educativas por nivel
 - [x] Integración en menú "Juega y Aprende"
 
+### 🚰 Aprende Fontanería Básica
+- [x] 3 niveles (lavabo, fregadero con sifón, baño completo)
+- [x] 11 componentes (tubos, codos, T juntas, llaves, sifón, etc)
+- [x] Sistema drag & drop con snap to grid
+- [x] Validación de instalación sin fugas
+- [x] Animación de flujo de agua
+- [x] Contenido educativo sobre sifones y normativa CTE
+- [x] Integración en menú principal
+
+### 🪑 Monta un Mueble
+- [x] 3 niveles progresivos (estantería → mesa → armario)
+- [x] Sistema de piezas con tipos (tablas, patas, platinas, bisagras, etc)
+- [x] Tornillos realistas (Phillips 4×20mm, 6×30mm, Allen M6, clavos)
+- [x] Herramientas: Destornillador Phillips, Llave Allen, Martillo, Nivel
+- [x] Validación paso a paso del montaje
+- [x] Snap to grid (40px) en área de montaje
+- [x] Sistema de instrucciones tipo IKEA
+- [x] Contenido educativo sobre tornillos, herramientas y errores comunes
+- [x] Integración en menú principal
+
+**Progreso: 4/10 juegos completados (40%)**
+
 ---
 
 ## 🚧 EN DESARROLLO
@@ -334,4 +356,4 @@ Crear una sección completa de juegos educativos prácticos tipo "learning by do
 ---
 
 **Última actualización:** 29/12/2025
-**Progreso global:** 2/10 juegos completados (20%)
+**Progreso global:** 3/10 juegos completados (30%)
