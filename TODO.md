@@ -54,6 +54,14 @@ Crear una sección completa de juegos educativos prácticos tipo "learning by do
 - [x] Explicaciones detalladas de cada riesgo con prevención y emergencias
 - [x] Números de emergencia (112, toxicología 915 620 420)
 
+### 🍳 Cocina Básica
+- [x] 3 niveles (Desayuno, Tortilla, Menú)
+- [x] Mecánica de pasos secuenciales y tiempos (tostadora, sartén)
+- [x] Items interactivos con estados (huevo, batido, sartén caliente)
+- [x] Mini-juego de corte de ingredientes
+- [x] Mensajes de seguridad e higiene
+- [x] Integración en menú "Juega y Aprende"
+
 ### 🧠 Psicotécnico: Cuadratura
 - [x] Mecánica de transformación Círculo -> Cuadrado
 - [x] Sistema de puntuación por precisión (0-100%)
@@ -63,7 +71,7 @@ Crear una sección completa de juegos educativos prácticos tipo "learning by do
 - [x] Contenido educativo vital (puede salvar vidas)
 - [x] Integración en menú principal
 
-**Progreso: 5/10 juegos completados (50%)**
+**Progreso: 6/10 juegos completados (60%)**
 
 ---
 
@@ -83,68 +91,6 @@ Crear una sección completa de juegos educativos prácticos tipo "learning by do
 ---
 
 ## 🏠 JUEGOS DE LABORES DEL HOGAR
-
-### 1️⃣ Aprende Fontanería Básica 🚰
-**Prioridad:** ALTA (siguiente después de electricidad)
-
-**Concepto:** Montar tuberías para que el agua llegue al grifo sin fugas
-
-**Mecánica:**
-- Arrastrar tubos (rectos, codos, T, codos 90°)
-- Colocar llaves de paso, sifón, grifo, desagüe
-- Abrir el agua y comprobar fugas (animación de agua)
-- Detectar conexiones mal hechas
-
-**Niveles:**
-- [ ] **Nivel 1 - Básico:** Lavabo simple (tubo + grifo + desagüe)
-- [ ] **Nivel 2 - Medio:** Fregadero + sifón (explicar qué es y por qué existe)
-- [ ] **Nivel 3 - Avanzado:** Baño completo con ducha, llave de paso general
-
-**Aprende:**
-- Qué es un sifón y por qué evita malos olores
-- Por qué hay fugas (roscas mal apretadas, juntas)
-- Cómo cortar el agua en emergencia
-- Diferencia entre PVC y cobre
-
-**Componentes necesarios:**
-- Tubos (recto, codo, T, reducción)
-- Llaves de paso
-- Grifo, ducha
-- Sifón, desagüe
-- Juntas tóricas
-
----
-
-### 2️⃣ Clasifica la Basura ♻️
-**Prioridad:** ALTA (fácil de implementar, muy educativo)
-
-**Concepto:** Separar residuos correctamente con tiempo limitado
-
-**Mecánica:**
-- Arrastrar residuos a contenedores (amarillo, azul, verde, marrón, gris)
-- Tiempo limitado (aumenta dificultad)
-- Penalización por errores (-10 puntos)
-- Bonus por rachas correctas
-
-**Niveles:**
-- [ ] **Nivel 1 - Básico:** Orgánico vs Plástico (2 contenedores)
-- [ ] **Nivel 2 - Medio:** + Vidrio, Papel (4 contenedores)
-- [ ] **Nivel 3 - Avanzado:** + Pilas, aceite, electrónica (residuos especiales)
-
-**Aprende:**
-- Reciclaje real según normativa española
-- Qué va en cada contenedor
-- Conciencia ambiental
-- Por qué importa reciclar
-
-**Residuos a incluir:**
-- Orgánico: cáscaras, restos comida
-- Plástico: botellas, envases
-- Papel: cartón, revistas
-- Vidrio: botellas, tarros
-- Especiales: pilas, bombillas, móviles, aceite
-
----
 
 ### 3️⃣ Limpieza del Hogar 🧹
 **Prioridad:** MEDIA
@@ -176,92 +122,7 @@ Crear una sección completa de juegos educativos prácticos tipo "learning by do
 
 ---
 
-### 4️⃣ Cocina Básica 🍳
-**Prioridad:** MEDIA-BAJA
-
-**Concepto:** Preparar recetas sencillas siguiendo pasos
-
-**Mecánica:**
-- Orden correcto de pasos
-- Control de tiempo y fuego (no quemar)
-- Evitar accidentes (sartén caliente, cuchillos)
-- Mini-games por técnica
-
-**Niveles:**
-- [ ] **Nivel 1 - Básico:** Desayuno (tostadas, café)
-- [ ] **Nivel 2 - Medio:** Pasta / Tortilla francesa
-- [ ] **Nivel 3 - Avanzado:** Menú completo (primero + segundo)
-
-**Aprende:**
-- Seguridad en cocina
-- Organización (mise en place)
-- Nutrición básica
-- Tiempos de cocción
-
----
-
 ## 🔧 JUEGOS TÉCNICOS / PRÁCTICOS
-
-### 5️⃣ Monta un Mueble 🪑
-**Prioridad:** ALTA (muy práctico, todos lo necesitan)
-
-**Concepto:** Montar un mueble tipo IKEA siguiendo instrucciones
-
-**Mecánica:**
-- Leer instrucciones (diagrama visual)
-- Elegir tornillos correctos (métrica, longitud)
-- Usar herramientas (destornillador, allen, martillo)
-- Secuencia correcta de montaje
-
-**Niveles:**
-- [ ] **Nivel 1 - Básico:** Estantería simple (4 tablas + tornillos)
-- [ ] **Nivel 2 - Medio:** Mesa con patas
-- [ ] **Nivel 3 - Avanzado:** Armario con puertas y bisagras
-
-**Aprende:**
-- Interpretar planos técnicos
-- Uso de herramientas básicas
-- Paciencia y método
-- Qué tornillo usar según material
-
-**Herramientas:**
-- Destornillador Phillips/plano
-- Llave Allen
-- Martillo
-- Nivel
-
----
-
-### 6️⃣ Seguridad en el Hogar 🚨
-**Prioridad:** ALTA (importante para niños)
-
-**Concepto:** Detectar riesgos en una casa
-
-**Mecánica:**
-- Señalar errores en una escena
-- Decidir qué hacer (multiple choice)
-- Simulación de consecuencias si fallas
-- Modo "busca los X errores"
-
-**Ejemplos de riesgos:**
-- Enchufe mojado / sobrecargado
-- Gas abierto sin llama
-- Escalera mal colocada
-- Cuchillos al borde
-- Productos químicos al alcance
-- Ventana sin protección (niños)
-
-**Niveles:**
-- [ ] **Nivel 1 - Cocina:** Gas, fuego, enchufes
-- [ ] **Nivel 2 - Baño:** Agua + electricidad
-- [ ] **Nivel 3 - Toda la casa:** Escaleras, ventanas, productos
-
-**Aprende:**
-- Prevención de accidentes
-- Qué hacer en emergencia
-- Números de emergencia (112)
-
----
 
 ### 7️⃣ Mantenimiento Básico del Coche 🚗
 **Prioridad:** MEDIA
@@ -430,5 +291,5 @@ Crear una sección completa de juegos educativos prácticos tipo "learning by do
 
 ---
 
-**Última actualización:** 29/12/2025
-**Progreso global:** 3/10 juegos completados (30%)
+**Última actualización:** 14/01/2026
+**Progreso global:** 6/10 juegos completados (60%)
