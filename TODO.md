@@ -53,6 +53,13 @@ Crear una sección completa de juegos educativos prácticos tipo "learning by do
 - [x] Nivel 3: 6 riesgos en casa completa (escalera, cable, juguetes, ventana, detector, productos)
 - [x] Explicaciones detalladas de cada riesgo con prevención y emergencias
 - [x] Números de emergencia (112, toxicología 915 620 420)
+
+### 🧠 Psicotécnico: Cuadratura
+- [x] Mecánica de transformación Círculo -> Cuadrado
+- [x] Sistema de puntuación por precisión (0-100%)
+- [x] Animación fluida de interpolación
+- [x] Feedback visual y sonoro
+- [x] Integración en menú principal
 - [x] Contenido educativo vital (puede salvar vidas)
 - [x] Integración en menú principal
 
@@ -316,6 +323,62 @@ Crear una sección completa de juegos educativos prácticos tipo "learning by do
 - Orden y método
 - Lógica espacial
 - Aprovechamiento espacio
+
+---
+
+## 🧠 IDEAS PSICOTÉCNICOS (Nuevas)
+
+### 🎯 1. Reacción al color
+- [x] Círculo cambia de color suavemente.
+- [x] Pulsar en verde puro exacto (Hue 120).
+- [x] Sistema de 3 rondas y promedio.
+- [x] Audio feedback por precisión.
+
+### 🔊 2. Sincronización de sonido
+- [x] Beeps visuales y sonoros.
+- [x] Pulsar al ritmo exacto.
+- [x] Evaluar desviación en milisegundos.
+
+### 🌀 3. Seguimiento de trayectoria
+- [x] Esfera objetivo en movimiento complejo.
+- [x] Mantener cursor/dedo dentro.
+- [x] Puntuación por porcentaje de tiempo dentro.
+
+### 🔢 4. Secuencia creciente
+- [x] Memorizar números mostrados brevemente.
+- [x] Teclado numérico in-game.
+- [x] Dificultad incremental (más dígitos / menos tiempo).
+
+### 🧩 5. Encuentra la figura distinta
+- [x] Grid de figuras (3x3 a 6x5).
+- [x] Detectar diferencia de color, rotación o tamaño.
+- [x] Modo contrareloj (60s).
+
+### ⏱️ 6. Estimación de tiempo
+- [x] "Pulsa a los X segundos".
+- [x] Feedback visual con tiempo exacto y desviación.
+- [x] Puntuación basada en milisegundos de error.
+- [x] Sistema de rondas con tiempos variables (3-7s).
+
+### 🧭 7. Rotación mental
+- [x] Figuras tipo Tetris.
+- [x] Identificar la misma figura rotada entre distractores reflejados.
+- [x] Sistema de puntuación por aciertos consecutivos.
+
+### 🧮 8. Cálculo rápido
+- [x] Operaciones matemáticas generadas dinámicamente (+, -, *, /).
+- [x] Selección múltiple (4 opciones).
+- [x] Modo Time Attack (60 segundos).
+
+### 🎚️ 9. Ajuste preciso
+- [x] Barra moviéndose.
+- [x] Pulsar en centro exacto.
+- [x] Timing visual.
+
+### 🔄 10. Simetría
+- [x] Figura incompleta.
+- [x] Elegir pieza que completa simetría.
+- [x] Percepción espacial.
 
 ---
 
