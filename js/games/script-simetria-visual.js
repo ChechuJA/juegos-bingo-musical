@@ -1,4 +1,4 @@
-window.registerGame(function() {
+window.registerGame = function() {
     const canvas = document.getElementById('gameCanvas');
     if (!canvas) {
         return () => {};
@@ -351,4 +351,4 @@ window.registerGame(function() {
         canvas.removeEventListener('mousedown', handleInput);
         canvas.removeEventListener('touchstart', handleInput);
     };
-});
+};

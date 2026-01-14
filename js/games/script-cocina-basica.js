@@ -1,4 +1,4 @@
-window.registerGame(function() {
+window.registerGame = function() {
     const canvas = document.getElementById('gameCanvas');
     if (!canvas) return () => {};
     const ctx = canvas.getContext('2d');
@@ -670,4 +670,4 @@ window.registerGame(function() {
         canvas.removeEventListener('touchend', handleEnd);
         if(actx) actx.close();
     };
-});
+};

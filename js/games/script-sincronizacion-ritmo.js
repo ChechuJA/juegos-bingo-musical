@@ -1,4 +1,4 @@
-window.registerGame(function() {
+window.registerGame = function() {
     const canvas = document.getElementById('gameCanvas');
     if (!canvas) {
         console.error('Canvas gameCanvas no encontrado');
@@ -295,4 +295,4 @@ window.registerGame(function() {
         canvas.removeEventListener('touchstart', handleInput);
         if(audioCtx) audioCtx.close();
     };
-});
+};
